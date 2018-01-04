@@ -1,0 +1,8 @@
+{
+  "name": "queHay",
+  "app_id": "aef3f739",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

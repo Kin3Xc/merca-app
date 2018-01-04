@@ -1,0 +1,48 @@
+.modal-login{
+    
+    color: #606060;
+    // background: #ecf0f1;
+    
+
+    ion-buttons{
+        ion-icon{
+            font-size:34px;
+        }
+    }
+
+    .login{
+        margin-top: 6px;
+        
+        border:0;
+
+        ion-input{
+            border: 1px #dedede solid;
+            padding: 0px 8px;
+        }
+    }
+    .actions{
+        p{
+            margin-top: 20px;
+            color: #606060;
+            text-decoration: underline;
+        }
+    }
+
+    .social{
+        margin-top: 25px;
+
+        button{
+            margin-top: 10px;
+        }
+    }
+
+    ion-buttons{
+        button{
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+        }
+    }
+    
+
+}
