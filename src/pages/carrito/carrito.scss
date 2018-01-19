@@ -1,3 +1,26 @@
-page-carrito {
+.page-carrito {
+	.item-md.item-block .item-inner{
+		border:none !important;
+	}
+	ion-note{
+		color:#666;
+	}
 
+	.productos{
+		.time{
+            float:right;
+            font-size:12px;
+        }
+        .price{
+	        font-size: 13px;
+	        color: #999999;
+	        margin-top: 3px;
+	    }
+	}
+}
+
+.btn-pagar{
+	background-color:#f53d3d;
+	color:#fff;
+	padding:28px;
 }

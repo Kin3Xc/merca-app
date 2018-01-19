@@ -5,14 +5,90 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>carrito</ion-title>
+  <ion-navbar color="hedaer">
+    <h2 class="title">Merca - Pide lo que quieras!</h2>
+    <ion-buttons end>
+      <button ion-button (click)="openModalLogin()">
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>  
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="page-carrito" >
+
+	<ion-item>
+		<ion-note item-start>Sub Total</ion-note>
+		<ion-note item-end>$30.000</ion-note>
+	</ion-item>
+
+	<ion-item>
+		<ion-note item-start>Domicilio</ion-note>
+		<ion-note item-end>$1.000</ion-note>
+	</ion-item>
+
+	<ion-item>
+		<ion-note item-start>Total a Pagar</ion-note>
+		<ion-note item-end>$31.000</ion-note>
+	</ion-item>
+	
+	<div class="productos">
+		<hr>
+		<ion-item>
+	        <ion-thumbnail item-start>
+	          <img src="assets/images/starbucks.png">
+	        </ion-thumbnail>
+	        <h2>Mocca Expresso </h2>
+	        <p>Mercado</p>
+	        <ion-icon item-end name="trash"></ion-icon>
+	        <p class="price">$30.000</p>
+	    </ion-item>
+
+	    <ion-item>
+	        <ion-thumbnail item-start>
+	          <img src="assets/images/juanvaldez.jpg">
+	        </ion-thumbnail>
+	        <h2>Mocca Expresso </h2>
+	        <p>Mercado</p>
+	        <ion-icon item-end name="trash"></ion-icon>
+	        <p class="price">$30.000</p>
+	    </ion-item>
+
+	    <ion-item>
+	        <ion-thumbnail item-start>
+	          <img src="assets/images/oma.jpg">
+	        </ion-thumbnail>
+	        <h2>Mocca Expresso </h2>
+	        <p>Mercado</p>
+	        <ion-icon item-end name="trash"></ion-icon>
+	        <p class="price">$30.000</p>
+	    </ion-item>
+
+	    <ion-item>
+	        <ion-thumbnail item-start>
+	          <img src="assets/images/starbucks.png">
+	        </ion-thumbnail>
+	        <h2>Mocca Expresso </h2>
+	        <p>Mercado</p>
+	        <ion-icon item-end name="trash"></ion-icon>
+	        <p class="price">$30.000</p>
+	    </ion-item>
+
+	    <ion-item>
+	        <ion-thumbnail item-start>
+	          <img src="assets/images/juanvaldez.jpg">
+	        </ion-thumbnail>
+	        <h2>Mocca Expresso </h2>
+	        <p>Mercado</p>
+	        <ion-icon item-end name="trash"></ion-icon>
+	        <p class="price">$30.000</p>
+	    </ion-item>
+    </div>
 
 </ion-content>
+
+
+<ion-footer>
+  <button class="btn-pagar" ion-button full>Pagar $31.000</button>
+</ion-footer>
