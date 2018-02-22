@@ -1,173 +1,167 @@
 <!--  page home -->
 <ion-header>
-  <ion-navbar color="hedaer">
-    <h2 class="title">Merca - Pide lo que quieras!</h2>
-    <ion-buttons end>
-      <button ion-button (click)="openModalLogin()">
-        <ion-icon name="contact"></ion-icon>
+    <ion-navbar color="hedaer">
+        <h2 class="title">PideYa! - Tierralta</h2>
+        <ion-buttons end>
+            <button ion-button (click)="openModalLogin()">
+        <ion-icon name="search"></ion-icon>
       </button>
-    </ion-buttons>  
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content class="page-home">
 
-  <ion-list>
+    <ion-segment (ionChange)="onChangeMenu()" [(ngModel)]="action">
+        <ion-segment-button value="canasta">
+            Canasta familiar
+        </ion-segment-button>
+        <ion-segment-button value="comida">
+            Comida/Bebidas
+        </ion-segment-button>
+        <ion-segment-button value="eventos">
+            Eventos
+        </ion-segment-button>
+    </ion-segment>
 
-    <div class="cafe" (click)="openModalSite()">
+    <div [ngSwitch]="action">
 
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/images/starbucks.png">
-        </ion-thumbnail>
-        <h2>Starbucks <span class="price"> <ion-icon name="bicycle"></ion-icon> $8.000</span></h2>
-        <p>Mercado</p>
-        <!-- <button ion-button clear item-end>$5k</button> -->
-        <p class="star">
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-        </p>
-        <p> <ion-icon name="chatboxes"></ion-icon> 120
-          <span class="time"><ion-icon name="alarm"></ion-icon> 10 min</span>
-        </p>
+        <ion-list *ngSwitchCase="'canasta'">
+            <ion-item *ngIf="clientes.length < 1">No hay productos disponibles</ion-item>
+            <div class="cafe" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
 
-      </ion-item>
-      <ion-row>
+                <ion-item>
+                    <ion-thumbnail item-start>
+                        <img src="{{cliente.avatar}}">
+                    </ion-thumbnail>
+                    <h2>{{cliente.nombre}} <span class="price"> <ion-icon name="bicycle"></ion-icon> ${{cliente.domicilio}}</span></h2>
+                    <p>{{cliente.descripcion}}</p>
+                    <!-- <button ion-button clear item-end>$5k</button> -->
+                    <p class="star">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                    </p>
+                    <p>
+                        <ion-icon name="chatboxes"></ion-icon> 120
+                        <span class="time"><ion-icon name="alarm"></ion-icon> {{cliente.tiempoEntrega}} min</span>
+                    </p>
 
-        
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item>
-              <ion-icon name="bicycle"></ion-icon>
-          </ion-item>
-        </ion-col> 
-
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item>
-            <ion-icon name="cart"></ion-icon>
-          </ion-item>
-        </ion-col> 
-
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item >
-             <ion-icon name="cash"></ion-icon>
-          </ion-item>
-        </ion-col>
-
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item >
-            <ion-icon name="pin"></ion-icon>
-          </ion-item>
-        </ion-col>
-
-      </ion-row>
-
-    </div>
-
-    <div class="cafe" (click)="openModalSite()">
-
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/images/juanvaldez.jpg">
-        </ion-thumbnail>
-        <h2>Juan Valdez <span class="price"> <ion-icon name="bicycle"></ion-icon> $5.000</span></h2>
-        <p>Restaurante</p>
-        <!-- <button ion-button clear item-end>$5k</button> -->
-        <p class="star">
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-        </p>
-        <p> <ion-icon name="chatboxes"></ion-icon> 120
-          <span class="time"><ion-icon name="alarm"></ion-icon> 10 min</span>
-        </p>
-
-      </ion-item>
-      <ion-row>
-
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item>
-              <ion-icon name="bicycle"></ion-icon>
-          </ion-item>
-        </ion-col> 
-
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item>
-            <ion-icon name="cart"></ion-icon>
-          </ion-item>
-        </ion-col> 
-
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item >
-             <ion-icon name="cash"></ion-icon>
-          </ion-item>
-        </ion-col>
-
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item >
-            <ion-icon name="pin"></ion-icon>
-          </ion-item>
-        </ion-col>
-
-      </ion-row>
-
-    </div>
+                </ion-item>
+                <ion-row>
 
 
-    <div class="cafe" (click)="openModalSite()">
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="bicycle"></ion-icon>
+                        </ion-item>
+                    </ion-col>
 
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/images/oma.jpg">
-        </ion-thumbnail>
-        <h2>Oma <span class="price"> <ion-icon name="bicycle"></ion-icon> $5.000</span></h2>
-        <p>Alcohol</p>
-        <!-- <button ion-button clear item-end>$5k</button> -->
-        <p class="star">
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-          <ion-icon name="star"></ion-icon>
-        </p>
-        <p> <ion-icon name="chatboxes"></ion-icon> 120
-          <span class="time"><ion-icon name="alarm"></ion-icon> 10 min</span>
-        </p>
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="cart"></ion-icon>
+                        </ion-item>
+                    </ion-col>
 
-      </ion-item>
-      <ion-row>
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="cash"></ion-icon>
+                        </ion-item>
+                    </ion-col>
 
-        
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item>
-              <ion-icon name="bicycle"></ion-icon>
-          </ion-item>
-        </ion-col> 
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="pin"></ion-icon>
+                        </ion-item>
+                    </ion-col>
 
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item>
-            <ion-icon name="cart"></ion-icon>
-          </ion-item>
-        </ion-col> 
+                </ion-row>
 
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item >
-             <ion-icon name="cash"></ion-icon>
-          </ion-item>
-        </ion-col>
+            </div>
 
-        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-          <ion-item >
-            <ion-icon name="pin"></ion-icon>
-          </ion-item>
-        </ion-col>
+        </ion-list>
 
-      </ion-row>
+
+
+
+        <!-- RESTAURANTES -->
+        <ion-list *ngSwitchCase="'comida'">
+
+            <div class="cafe restaurantes" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
+
+                <ion-item>
+                    <ion-thumbnail item-start>
+                        <img src="{{ cliente.avatar }}">
+                    </ion-thumbnail>
+                    <h2>{{ cliente.nombre }} <span class="price"> <ion-icon name="bicycle"></ion-icon> ${{cliente.precio }}</span></h2>
+                    <p>{{ cliente.descripcion }}</p>
+                    <!-- <button ion-button clear item-end>$5k</button> -->
+                    <p class="star">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                    </p>
+                    <p>
+                        <ion-icon name="chatboxes"></ion-icon> 30
+                        <span class="time"><ion-icon name="alarm"></ion-icon> {{cliente.tiempoEntrega}} min</span>
+                    </p>
+
+                </ion-item>
+                <ion-row>
+
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="bicycle"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="restaurant"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="cash"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="pin"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+
+                </ion-row>
+            </div>
+
+        </ion-list>
+        <!-- FIN RESTAURANTES -->
+
+
+        <!-- EVENTOS -->
+        <div class="eventos" *ngSwitchCase="'eventos'">
+            <ion-list *ngFor="let evento of eventos">
+
+                <ion-list-header>{{ evento.fecha }}</ion-list-header>
+
+                <ion-item>
+                    <ion-avatar item-start>
+                        <img src="{{ evento.image }}">
+                    </ion-avatar>
+                    <h2>{{ evento.nombre }}</h2>
+                    <p>{{ evento.descripcion }}</p>
+                    <p>{{ evento.lugar }}</p>
+                    <ion-note item-end>{{ evento.hora }}</ion-note>
+                </ion-item>
+
+            </ion-list>
+
+        </div>
+        <!-- FIN EVENTOS -->
 
     </div>
-    
-  </ion-list>
-        
-
 </ion-content>

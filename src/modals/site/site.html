@@ -1,9 +1,3 @@
-<!--
-  Generated template for the ModalSite page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 
 <ion-content class="modal-cliente">
   <!-- button close modal -->
@@ -13,26 +7,26 @@
     
     <ion-row>
       <ion-col col-4 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center>
-        <img src="assets/images/starbucks.png" alt="">
+        <img src="{{cliente.avatar}}" alt="">
       </ion-col>
 
       <ion-col col-8 col-sm-6 col-md-6 col-lg-6 col-xl-6>
-        <h3>Starbucks</h3>
+        <h3>{{cliente.nombre}}</h3>
         <div class="info">
-          <p>Telefono: 12334423</p>
-          <p>Dirección: Calle 2 # 12 - 32</p>
-          <!-- <p>Tierralta Cordoba</p> -->
+          <p>Telefono: {{cliente.telefono}}</p>
+          <p>Dirección: {{cliente.direccion}}</p>
+
           <p class="star">
             <ion-icon name="star"></ion-icon>
             <ion-icon name="star"></ion-icon>
             <ion-icon name="star"></ion-icon>
             <ion-icon name="star"></ion-icon>
           </p>
-          <p>ABIERTO</p>
-          <button ion-button icon-left color="secondary" small outline>
+          <!-- <p>ABIERTO</p> -->
+          <a href="tel:+57{{cliente.telefono}}" ion-button icon-left color="secondary" small outline>
             <ion-icon name="call"></ion-icon>
             Llamar
-          </button>
+          </a>
         </div>
       </ion-col>
 
@@ -43,12 +37,11 @@
 
   <div padding>
     <ion-segment [(ngModel)]="pet">
-      <!-- <ion-segment-button value="services">
-        Servicios
-      </ion-segment-button> -->
+  
       <ion-segment-button value="menu">
         Productos
       </ion-segment-button>
+
       <ion-segment-button value="comments">
         Comentarios
       </ion-segment-button>
@@ -58,121 +51,19 @@
 
   <div [ngSwitch]="pet">
 
-<!--   <ion-list *ngSwitchCase="'services'">
-
-    <ion-item>
-        Corriente Eléctrica
-      <ion-icon class="service" name="checkmark" item-end></ion-icon>
-    </ion-item>
-
-    <ion-item>
-        Wifi
-      <ion-icon class="service" name="checkmark" item-end></ion-icon>
-    </ion-item>
-
-    <ion-item>
-        Mesas de trabajo
-      <ion-icon class="service" name="checkmark" item-end></ion-icon>
-    </ion-item>
-
-    <ion-item>
-        Sillas comodas
-      <ion-icon class="service" name="close" item-end></ion-icon>
-    </ion-item>
-
-    <ion-item>
-        Libre de humo
-      <ion-icon class="service" name="checkmark" item-end></ion-icon>
-    </ion-item>
-
-  </ion-list> -->
-
-
-
-
 
   <ion-list *ngSwitchCase="'menu'">
 
-    <ion-item>
+    <ion-item *ngFor="let producto of productos">
       <ion-thumbnail item-start>
-        <img src="http://www.juanvaldezcafe.com/sites/default/files/kisses-latte-caramelo.jpg">
+        <img src="{{ producto.image }}">
       </ion-thumbnail>
-      <h2 color="gris">LATTE</h2>
-      <button float-right ion-button color="secondary" outline>Agregar</button>
-      <p>Comidas rápidas</p>
-      <p>$20.000</p>
+      <h2 color="gris">{{ producto.nombre }}</h2>
+      <button float-right ion-button color="secondary" (click)="addProducto(producto)" outline>Agregar</button>
+      <p>{{ producto.descripcion }}</p>
+      <p>${{ producto.precio }}</p>
     </ion-item>
 
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="http://www.juanvaldezcafe.com/sites/default/files/kisses-nevado.jpg">
-      </ion-thumbnail>
-      <h2 color="gris">Nevato de Café con Kisses</h2>
-      <button float-right ion-button color="secondary" outline>Agregar</button>
-      <p>Restaurantes</p>
-      <p>$20.000</p>
-    </ion-item>
-    
-
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="http://www.juanvaldezcafe.com/sites/default/files/kisses-nevado.jpg">
-      </ion-thumbnail>
-      <h2 color="gris">Nevato de Café con Kisses</h2>
-      <button float-right ion-button color="secondary" outline>Agregar</button>
-      <p>Restaurantes</p>
-      <p>$20.000</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="http://www.juanvaldezcafe.com/sites/default/files/kisses-nevado.jpg">
-      </ion-thumbnail>
-      <h2 color="gris">Nevato de Café con Kisses</h2>
-      <button float-right ion-button color="secondary" outline>Agregar</button>
-      <p>Restaurantes</p>
-      <p>$20.000</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="http://www.juanvaldezcafe.com/sites/default/files/kisses-nevado.jpg">
-      </ion-thumbnail>
-      <h2 color="gris">Nevato de Café con Kisses</h2>
-      <button float-right ion-button color="secondary" outline>Agregar</button>
-      <p>Restaurantes</p>
-      <p>$20.000</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="http://www.juanvaldezcafe.com/sites/default/files/kisses-nevado.jpg">
-      </ion-thumbnail>
-      <h2 color="gris">Nevato de Café con Kisses</h2>
-      <button float-right ion-button color="secondary" outline>Agregar</button>
-      <p>Restaurantes</p>
-      <p>$20.000</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="http://www.juanvaldezcafe.com/sites/default/files/kisses-nevado.jpg">
-      </ion-thumbnail>
-      <h2 color="gris">Nevato de Café con Kisses</h2>
-      <button float-right ion-button color="secondary" outline>Agregar</button>
-      <p>Restaurantes</p>
-      <p>$20.000</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="http://www.juanvaldezcafe.com/sites/default/files/kisses-nevado.jpg">
-      </ion-thumbnail>
-      <h2 color="gris">Nevato de Café con Kisses</h2>
-      <button float-right ion-button color="secondary" outline>Agregar</button>
-      <p>Restaurantes</p>
-      <p>$20.000</p>
-    </ion-item>
   </ion-list>
 
   <ion-list *ngSwitchCase="'comments'">
@@ -202,16 +93,13 @@
   </ion-list>
 
 </div>
-
-
-
 </ion-content>
 
 
 
 
 <ion-footer>
-  <div class="footer-cliente">
+  <div class="footer-cliente" (click)="openModalCarrito()">
     <ion-icon tabBadge="14" tabBadgeStyle="danger" color="primary" name="ios-basket"></ion-icon>
     <span>0</span>
   </div>

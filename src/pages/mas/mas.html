@@ -1,5 +1,52 @@
+<ion-header>
+  <ion-navbar color="hedaer">
+    <h2 class="title">PideYa! - Tierralta</h2>
+    <ion-buttons end>
+      <button ion-button (click)="openModalLogin()">
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>  
+  </ion-navbar>
+</ion-header>
 
-<ion-content class="page-mas">
+<!-- page favoritos -->
+<ion-content class="page-perfil">
 
+	<ion-item color="primary" class="perfil">
+		<img src="assets/images/elkin.jpg" alt="">
+		<h3>Elkin Urango</h3>
+	</ion-item>
 
+	<ion-list class="form">
+	  <h2>Perfil de usuario</h2>
+
+	  <ion-item>
+	    <ion-label floating>Nombre</ion-label>
+	    <ion-input type="text"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Correo</ion-label>
+	    <ion-input type="text"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Contraseña</ion-label>
+	    <ion-input type="password"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Teléfono</ion-label>
+	    <ion-input type="text"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label floating>Dirección</ion-label>
+	    <ion-input type="text"></ion-input>
+	  </ion-item>
+
+	</ion-list>
+
+	<button class="btn-pagar" ion-button full>Actualizar datos</button>
+  
 </ion-content>

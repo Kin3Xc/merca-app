@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the ModalCliente page.
@@ -15,13 +15,14 @@ import { IonicPage, ViewController } from 'ionic-angular';
 export class ModalOpciones {
 
   public pet: string = "filter";
+  public data:any;
 
-  constructor( private view: ViewController) {
+  constructor(private navParams: NavParams, private view: ViewController) {
 
   }
 
   ionViewWillLoad() {
-    
+    this.data = this.navParams.get('data');
   }
 
   closeModal(){
