@@ -27,4 +27,16 @@ export class ProvidersClientesProvider {
     .toPromise();
   }
 
+  getComentarios(id) {
+    return this.http.get(this.API_URL+'/comentario/comentarios/'+id)
+    .map(res => res.json())
+    .toPromise();
+  }
+
+  addComentario(comment) {
+    return this.http.post(this.API_URL+'/comentario', comment)
+    .map(res => res.json())
+    .toPromise();
+  }
+
 }

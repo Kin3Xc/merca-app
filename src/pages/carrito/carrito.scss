@@ -5,8 +5,15 @@
 	ion-note{
 		color:#666;
 	}
+	.total{
+		font-weight:bold;
+	}
 
 	.productos{
+		h2{
+			color:#666;
+			font-size:20px;
+		}
 		.time{
             float:right;
             font-size:12px;
@@ -16,12 +23,16 @@
 	        color: #999999;
 	        margin-top: 3px;
 	    }
+	    ion-icon{
+	    	color:#666;
+	    }
 	}
 }
 
 .btn-pagar{
-	background-color:#f53d3d;
+	background-color:#000;
 	color:#fff;
 	padding:28px;
 	margin:0;
+	margin-top: 22px;
 }

@@ -20,75 +20,38 @@
 
 	<ion-item>
 		<ion-note item-start>Sub Total</ion-note>
-		<ion-note item-end>$30.000</ion-note>
+		<ion-note item-end>${{ subtotal }}</ion-note>
 	</ion-item>
 
 	<ion-item>
 		<ion-note item-start>Domicilio</ion-note>
-		<ion-note item-end>$1.000</ion-note>
+		<ion-note item-end>${{ domicilio }}</ion-note>
 	</ion-item>
 
 	<ion-item>
-		<ion-note item-start>Total a Pagar</ion-note>
-		<ion-note item-end>$31.000</ion-note>
+		<ion-note class="total" item-start>Total a Pagar</ion-note>
+		<ion-note class="total" item-end>${{ total }}</ion-note>
 	</ion-item>
+
+	<button (click)="openModalCarrito()" class="btn-pagar" ion-button full>Confirmar pedido por ${{ total }}</button>
 	
 	<div class="productos">
-		<hr>
-		<ion-item>
+		<!-- <hr> -->
+		<h2 padding>Productos en el pedido</h2>
+		<ion-item *ngFor="let producto of carrito; let i = index">
 	        <ion-thumbnail item-start>
-	          <img src="assets/images/starbucks.png">
+	          <img src="{{ producto.image }}">
 	        </ion-thumbnail>
-	        <h2>Mocca Expresso </h2>
-	        <p>Mercado</p>
-	        <ion-icon item-end name="trash"></ion-icon>
-	        <p class="price">$30.000</p>
-	    </ion-item>
-
-	    <ion-item>
-	        <ion-thumbnail item-start>
-	          <img src="assets/images/juanvaldez.jpg">
-	        </ion-thumbnail>
-	        <h2>Mocca Expresso </h2>
-	        <p>Mercado</p>
-	        <ion-icon item-end name="trash"></ion-icon>
-	        <p class="price">$30.000</p>
-	    </ion-item>
-
-	    <ion-item>
-	        <ion-thumbnail item-start>
-	          <img src="assets/images/oma.jpg">
-	        </ion-thumbnail>
-	        <h2>Mocca Expresso </h2>
-	        <p>Mercado</p>
-	        <ion-icon item-end name="trash"></ion-icon>
-	        <p class="price">$30.000</p>
-	    </ion-item>
-
-	    <ion-item>
-	        <ion-thumbnail item-start>
-	          <img src="assets/images/starbucks.png">
-	        </ion-thumbnail>
-	        <h2>Mocca Expresso </h2>
-	        <p>Mercado</p>
-	        <ion-icon item-end name="trash"></ion-icon>
-	        <p class="price">$30.000</p>
-	    </ion-item>
-
-	    <ion-item>
-	        <ion-thumbnail item-start>
-	          <img src="assets/images/juanvaldez.jpg">
-	        </ion-thumbnail>
-	        <h2>Mocca Expresso </h2>
-	        <p>Mercado</p>
-	        <ion-icon item-end name="trash"></ion-icon>
-	        <p class="price">$30.000</p>
+	        <h2>{{  producto.nombre }} </h2>
+	        <p>{{ producto.categoria.nombre }}</p>
+	        <ion-icon (click)="deleteProducto(i)" item-end name="trash"></ion-icon>
+	        <p class="price">${{ producto.precio }}</p>
 	    </ion-item>
     </div>
 
 </ion-content>
 
 
-<ion-footer>
+<!-- <ion-footer>
   <button (click)="openModalCarrito()" class="btn-pagar" ion-button full>Confirmar pedido por $31.000</button>
-</ion-footer>
+</ion-footer> -->
