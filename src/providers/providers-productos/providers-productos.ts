@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 export class ProvidersProductosProvider {
   API_URL:string;
   constructor(public http: Http) {
-    this.API_URL = "http://localhost:4202/api/v1";
+    this.API_URL = "http://localhost:5434/api/v1";
   }
 
   getProductos(id){

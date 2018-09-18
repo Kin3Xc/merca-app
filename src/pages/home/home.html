@@ -13,20 +13,20 @@
 <ion-content class="page-home">
 
     <ion-segment (ionChange)="onChangeMenu()" [(ngModel)]="action">
-        <ion-segment-button value="canasta">
-            Canasta familiar
-        </ion-segment-button>
-        <ion-segment-button value="comida">
+        <ion-segment-button value="5a725e677a2b4a070e3a209d">
             Comida/Bebidas
         </ion-segment-button>
-        <ion-segment-button value="eventos">
+        <ion-segment-button value="5a725d0e7a2b4a070e3a209c">
+            Canasta familiar
+        </ion-segment-button>
+        <ion-segment-button value="5a725ea67a2b4a070e3a209e">
             Eventos
         </ion-segment-button>
     </ion-segment>
 
     <div [ngSwitch]="action">
 
-        <ion-list *ngSwitchCase="'canasta'">
+        <ion-list *ngSwitchCase="'5a725d0e7a2b4a070e3a209c'">
             <ion-item *ngIf="clientes.length < 1">No hay productos disponibles</ion-item>
             <div class="cafe" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
 
@@ -86,7 +86,7 @@
 
 
         <!-- RESTAURANTES -->
-        <ion-list *ngSwitchCase="'comida'">
+        <ion-list *ngSwitchCase="'5a725e677a2b4a070e3a209d'">
 
             <div class="cafe restaurantes" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
 
@@ -143,7 +143,7 @@
 
 
         <!-- EVENTOS -->
-        <div class="eventos" *ngSwitchCase="'eventos'">
+        <div class="eventos" *ngSwitchCase="'5a725ea67a2b4a070e3a209e'">
             <ion-list *ngFor="let evento of eventos">
 
                 <ion-list-header>{{ evento.fecha }}</ion-list-header>

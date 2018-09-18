@@ -25,6 +25,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ProvidersClientesProvider } from '../providers/providers-clientes/providers-clientes';
 import { ProvidersProductosProvider } from '../providers/providers-productos/providers-productos';
+import { CategoriasProvider } from '../providers/categorias/categorias';
 
 
 export const firebaseConfig = {
@@ -75,7 +76,8 @@ export const firebaseConfig = {
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ProvidersClientesProvider,
-    ProvidersProductosProvider
+    ProvidersProductosProvider,
+    CategoriasProvider
   ]
 })
 export class AppModule {}
