@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+
+import { AppConfig } from '../../config/config';
 /*
   Generated class for the ProvidersClientesProvider provider.
 
@@ -10,31 +12,31 @@ import 'rxjs/add/operator/toPromise';
 */
 @Injectable()
 export class ProvidersClientesProvider {
-  API_URL:string;
+  
   constructor(public http: Http) {
-    this.API_URL = "http://localhost:5434/api/v1";
+    
   }
 
   getClientes(categoria) {
-	  return this.http.get(this.API_URL+'/proveedor/categoria/'+categoria)
+	  return this.http.get(`${AppConfig.API_URL}/proveedor/categoria/${categoria}`)
 	  .map(res => res.json())
 	  .toPromise();
 	}
 
   getEventos(id) {
-    return this.http.get(`${this.API_URL}/producto/categoria/${id}`)
+    return this.http.get(`${AppConfig.API_URL}/producto/categoria/${id}`)
     .map(res => res.json())
     .toPromise();
   }
 
   getComentarios(id) {
-    return this.http.get(this.API_URL+'/comentario/comentarios/'+id)
+    return this.http.get(`${AppConfig.API_URL}/comentario/comentarios/${id}`)
     .map(res => res.json())
     .toPromise();
   }
 
   addComentario(comment) {
-    return this.http.post(this.API_URL+'/comentario', comment)
+    return this.http.post(`${AppConfig.API_URL}/comentario`, comment)
     .map(res => res.json())
     .toPromise();
   }

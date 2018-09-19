@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+import { AppConfig } from '../../config/config';
+
 /*
   Generated class for the ProvidersProductosProvider provider.
 
@@ -11,13 +13,12 @@ import 'rxjs/add/operator/toPromise';
 */
 @Injectable()
 export class ProvidersProductosProvider {
-  API_URL:string;
+
   constructor(public http: Http) {
-    this.API_URL = "http://localhost:5434/api/v1";
   }
 
   getProductos(id){
-  	return this.http.get(this.API_URL+'/producto/proveedor/'+id)
+  	return this.http.get(`${AppConfig.API_URL}/producto/proveedor/${id}`)
 	  .map(res => res.json())
 	  .toPromise();
   }
