@@ -28,6 +28,7 @@
         "@ionic/storage": "2.0.1",
         "angularfire2": "^4.0.0-rc.2",
         "cordova-android": "^6.3.0",
+        "cordova-ios": "4.5.5",
         "cordova-plugin-browsertab": "^0.2.0",
         "cordova-plugin-buildinfo": "^1.1.0",
         "cordova-plugin-compat": "^1.2.0",
@@ -40,7 +41,6 @@
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.3",
         "cordova-plugin-whitelist": "^1.3.2",
-        "cordova-universal-links-plugin": "^1.2.1",
         "firebase": "^4.3.0",
         "ionic-angular": "3.5.0",
         "ionic-plugin-keyboard": "^2.2.1",
@@ -72,7 +72,6 @@
                 "REVERSED_CLIENT_ID": "com.googleusercontent.apps.736253765602-vv4ispbe06o9996ncdaunvga9igogk7p"
             },
             "cordova-plugin-buildinfo": {},
-            "cordova-universal-links-plugin": {},
             "cordova-plugin-browsertab": {},
             "cordova-plugin-inappbrowser": {},
             "cordova-plugin-customurlscheme": {
@@ -87,7 +86,8 @@
             "cordova-plugin-compat": {}
         },
         "platforms": [
-            "android"
+            "android",
+            "ios"
         ]
     }
 }
