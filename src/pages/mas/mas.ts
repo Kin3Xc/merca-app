@@ -12,8 +12,6 @@ export class MasPage {
   }
 
   openModalMas(item){
-    console.log(item);
-
     let data = {
       name: item,
       logo: "turista"

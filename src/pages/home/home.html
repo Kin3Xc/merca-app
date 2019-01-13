@@ -1,11 +1,11 @@
 <!--  page home -->
 <ion-header>
     <ion-navbar color="hedaer">
-        <h2 class="title">PideYa!</h2>
+        <h2 class="title">PideYa! - Encuentra lo que quieres</h2>
         <ion-buttons end>
             <button ion-button (click)="openModalLogin()">
-        <ion-icon name="search"></ion-icon>
-      </button>
+                <ion-icon name="happy"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -14,10 +14,10 @@
 
     <ion-segment (ionChange)="onChangeMenu()" [(ngModel)]="action">
         <ion-segment-button value="5a725e677a2b4a070e3a209d">
-            Comida/Bebidas
+            Comida
         </ion-segment-button>
         <ion-segment-button value="5a725d0e7a2b4a070e3a209c">
-            Canasta familiar
+            Productos
         </ion-segment-button>
         <ion-segment-button value="5a725ea67a2b4a070e3a209e">
             Eventos

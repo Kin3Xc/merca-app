@@ -3,9 +3,9 @@ import {
   IonicPage, 
   NavParams, 
   NavController, 
-  ViewController, 
-  ModalController,
-  ToastController
+  ViewController,
+  ToastController,
+  AlertController
 } from 'ionic-angular';
 
 import { ProvidersProductosProvider } from '../../providers/providers-productos/providers-productos';
@@ -35,11 +35,11 @@ export class ModalSite {
   constructor(
     private navParams: NavParams, 
     private view: ViewController,
-    private modal: ModalController,
     private NavCtrl: NavController,
     private Productos: ProvidersProductosProvider,
     private Clientes: ProvidersClientesProvider,
-    private Toast: ToastController) {
+    private Toast: ToastController,
+    public alertCtrl: AlertController) {
 
     this.numProductos = 0;
 
@@ -47,7 +47,6 @@ export class ModalSite {
 
   ionViewWillLoad() {
     this.cliente = this.navParams.get('cliente');
-    console.log(this.cliente);
     this.getNumProductos();
     this.getProductos(this.cliente);
     this.getComentarios(this.cliente);
@@ -61,30 +60,44 @@ export class ModalSite {
   getProductos(cliente){
     let id = cliente._id;
     this.Productos.getProductos(id).then(res=>{
-      console.log(res);
       this.productos = res;
-    }).catch(err=>{console.log(err)})
+    }).catch(err=>{})
   }
 
   getComentarios(cliente){
     let id = cliente._id;
     this.Clientes.getComentarios(id).then(res=>{
-      console.log(res);
       this.comentarios = res;
-    }).catch(err=> console.log(err))
+    }).catch(err=> {} )
   }
 
   addProducto(producto){
-    
-    let carrito = JSON.parse(localStorage.getItem('carritoPideYa'));
-    if(carrito){
-      carrito.push(producto);
-      localStorage.setItem('carritoPideYa', JSON.stringify(carrito));  
-    }else{
-      localStorage.setItem('carritoPideYa', JSON.stringify([producto]));  
-    }
-    this.toast('Se agregó el producto a su pedido');
-    console.log(carrito);
+
+    const confirm = this.alertCtrl.create({
+      title: 'Confirmación',
+      message: `Seguro que desea algregar el producto '${producto.nombre}' a su pedido? `,
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Agregar',
+          handler: () => {
+            let carrito = JSON.parse(localStorage.getItem('carritoPideYa'));
+            if(carrito){
+              carrito.push(producto);
+              localStorage.setItem('carritoPideYa', JSON.stringify(carrito));  
+            }else{
+              localStorage.setItem('carritoPideYa', JSON.stringify([producto]));  
+            }
+            this.toast('Se agregó el producto a su pedido');
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 
@@ -92,7 +105,7 @@ export class ModalSite {
     let toast = this.Toast.create({
       message: message,
       duration: 3000,
-      position: 'top'
+      position: 'bottom'
     });
     toast.present();
   }
@@ -102,7 +115,6 @@ export class ModalSite {
   }
 
   addComment(){
-    console.log(this.comentario);
     let fecha:Date = new Date();
     let idProveedor = this.returnID(this.cliente);
 
@@ -112,12 +124,11 @@ export class ModalSite {
       hora: `${fecha.getDate()}/${fecha.getMonth()+1} - ${fecha.getHours()}:${fecha.getMinutes()}`,
       proveedor: idProveedor
     };
-    console.log(comentario);
+
     this.Clientes.addComentario(comentario).then(res=>{
-      console.log(res);
       this.getComentarios(this.cliente);
       this.comentario = '';
-    }).catch(err=> console.log(err))
+    }).catch(err=> {})
   }
 
   closeModal(){

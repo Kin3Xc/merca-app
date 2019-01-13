@@ -14,28 +14,23 @@
       <p>Por favor completa el siguiente fomulario.</p>
     </ion-item>
   <ion-item>
-    <ion-label floating>Ingresa tu nombre</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-label floating>Ingresa tu nombre *</ion-label>
+    <ion-input [(ngModel)]="name" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Teléfono de contacto</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-label floating>Teléfono de contacto *</ion-label>
+    <ion-input [(ngModel)]="telefono" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Dirección</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Indicaciones adicionales</ion-label>
-    <ion-textarea></ion-textarea>
+    <ion-label floating>Dirección *</ion-label>
+    <ion-input [(ngModel)]="direccion" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Comentarios al pedido</ion-label>
-    <ion-textarea></ion-textarea>
+    <ion-textarea [(ngModel)]="comentarios"></ion-textarea>
   </ion-item>
 
 </ion-content>
@@ -44,5 +39,5 @@
 
 
 <ion-footer>
-  <button class="btn-confirmar" ion-button full>Enviar pedido</button>
+  <button (click)="sendPedido()" class="btn-confirmar" ion-button full>Enviar pedido</button>
 </ion-footer>

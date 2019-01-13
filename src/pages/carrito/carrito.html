@@ -5,16 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="hedaer">
-    <h2 class="title">PideYa!</h2>
-    <ion-buttons end>
-      <button ion-button (click)="openModalLogin()">
-        <ion-icon name="contact"></ion-icon>
-      </button>
-    </ion-buttons>  
-  </ion-navbar>
+	<ion-navbar color="hedaer">
+			<h2 class="title">PideYa! - Encuentra lo que quieres</h2>
+			<ion-buttons end>
+					<button ion-button (click)="openModalLogin()">
+							<ion-icon name="happy"></ion-icon>
+					</button>
+			</ion-buttons>
+	</ion-navbar>
 </ion-header>
-
 
 <ion-content class="page-carrito" >
 
@@ -25,15 +24,15 @@
 
 	<ion-item>
 		<ion-note item-start>Domicilio</ion-note>
-		<ion-note item-end>${{ domicilio }}</ion-note>
+		<ion-note *ngIf="subtotal > 0" item-end>${{ domicilio }}</ion-note>
+		<ion-note *ngIf="subtotal === 0" item-end>$0</ion-note>
 	</ion-item>
 
 	<ion-item>
 		<ion-note class="total" item-start>Total a Pagar</ion-note>
-		<ion-note class="total" item-end>${{ total }}</ion-note>
+		<ion-note *ngIf="subtotal > 0" class="total" item-end>${{ total }}</ion-note>
+		<ion-note *ngIf="subtotal === 0" class="total" item-end>$0</ion-note>
 	</ion-item>
-
-	<button (click)="openModalCarrito()" class="btn-pagar" ion-button full>Confirmar pedido por ${{ total }}</button>
 	
 	<div class="productos">
 		<!-- <hr> -->
@@ -47,7 +46,9 @@
 	        <ion-icon (click)="deleteProducto(i)" item-end name="trash"></ion-icon>
 	        <p class="price">${{ producto.precio }}</p>
 	    </ion-item>
-    </div>
+		</div>
+		
+		<button [disabled]="subtotal === 0" (click)="openModalCarrito()" class="btn-pagar" ion-button full>Confirmar pedido por ${{ total }}</button>
 
 </ion-content>
 

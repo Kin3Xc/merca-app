@@ -15,6 +15,7 @@ import { FavoritosPage } from '../pages/favoritos/favoritos';
 import { MasPage } from '../pages/mas/mas';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+import { StatusPage } from '../pages/status/status';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,6 +27,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ProvidersClientesProvider } from '../providers/providers-clientes/providers-clientes';
 import { ProvidersProductosProvider } from '../providers/providers-productos/providers-productos';
 import { CategoriasProvider } from '../providers/categorias/categorias';
+import { PedidoProvider } from '../providers/pedido/pedido';
 
 
 export const firebaseConfig = {
@@ -48,7 +50,8 @@ export const firebaseConfig = {
     
     MasPage,
     LoginPage,
-    TabsPage
+    TabsPage,
+    StatusPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ export const firebaseConfig = {
     
     LoginPage,
     MasPage,
-    TabsPage
+    TabsPage,
+    StatusPage
   ],
   providers: [
     StatusBar,
@@ -77,7 +81,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ProvidersClientesProvider,
     ProvidersProductosProvider,
-    CategoriasProvider
+    CategoriasProvider,
+    PedidoProvider
   ]
 })
 export class AppModule {}

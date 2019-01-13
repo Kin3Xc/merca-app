@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ViewController, LoadingController } from 'ionic-angular';
+import { IonicPage, ViewController, LoadingController } from 'ionic-angular';
 
 
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
@@ -24,7 +24,6 @@ export class ModalMap {
 
 
   constructor(
-    private navParams: NavParams, 
     private view: ViewController, 
     public geolocation: Geolocation,
     public loadingCtrl: LoadingController
@@ -52,7 +51,6 @@ export class ModalMap {
       this.loadMap(response,loader);
     })
     .catch(error =>{
-      console.log(error);
     })
   }
 
@@ -61,7 +59,6 @@ export class ModalMap {
 
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-    console.log(latitude, longitude);
     
     // create a new map by passing HTMLElement
     let mapEle: HTMLElement = document.getElementById('mapa');
@@ -83,6 +80,7 @@ export class ModalMap {
         map: this.map,
         title: 'Mi posición'
       });
+      console.log(marker);
       mapEle.classList.add('show-map');
       loader.dismiss();
     });

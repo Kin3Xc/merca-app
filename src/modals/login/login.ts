@@ -34,10 +34,8 @@ export class ModalLogin {
 
     firebase.auth().onAuthStateChanged( user => {
     if (user) {
-      console.log(user);
       this.userProfile = user;
     } else {
-      console.log("There's no user here");
     }
   });
 
@@ -56,14 +54,12 @@ export class ModalLogin {
         if (result.credential) {
           // This gives you a Google Access Token.
           // You can use it to access the Google API.
-          var token = result.credential.accessToken;
+          // var token = result.credential.accessToken;
           // The signed-in user info.
           this.user = result.user;
-          console.log(token, this.user);
         }
       }).catch(function(error) {
         // Handle Errors here.
-        console.log(error.message);
       });
     });
   }
@@ -73,12 +69,11 @@ export class ModalLogin {
   signInWithFacebook() {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then(res => console.log(res));
+      .then(res => {});
   }
 
 
   closeModal(){
-    console.log('Close modal');
   	this.view.dismiss();
   }
 

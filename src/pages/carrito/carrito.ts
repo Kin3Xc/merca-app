@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the CarritoPage page.
@@ -24,17 +24,17 @@ export class CarritoPage {
   	private modal: ModalController,
     private Toast: ToastController) {
 
+  }
+
+  ionViewDidEnter() {
+    this.getLocalCarrito();   
+  }
+
+  getLocalCarrito(){
     this.total = 0;
     this.domicilio = 1000;
     this.subtotal = 0;
 
-  }
-
-  ionViewDidLoad() {
-    this.getLocalCarrito();    
-  }
-
-  getLocalCarrito(){
     let carrito:any = JSON.parse(localStorage.getItem('carritoPideYa'));
     if(carrito){
       this.carrito = carrito;
@@ -46,7 +46,6 @@ export class CarritoPage {
   }
 
   deleteProducto(index){
-    console.log(index);
     this.carrito.splice(index, 1);
     localStorage.setItem('carritoPideYa', JSON.stringify(this.carrito));
     this.getLocalCarrito();
@@ -68,6 +67,11 @@ export class CarritoPage {
       duration: 3000
     });
     toast.present();
+  }
+
+  openModalLogin(){
+  	const site = this.modal.create('ModalLogin');
+  	site.present();
   }
 
 }

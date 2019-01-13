@@ -59,7 +59,7 @@
         <img src="{{ producto.image }}">
       </ion-thumbnail>
       <h2 color="gris">{{ producto.nombre }}</h2>
-      <button float-right ion-button color="negro" (click)="addProducto(producto)" outline>Agregar</button>
+      <button float-right ion-button color="negro" (click)="addProducto(producto)" outline>Pedir</button>
       <p>{{ producto.descripcion }}</p>
       <p>${{ producto.precio }}</p>
     </ion-item>
@@ -73,7 +73,8 @@
     </div>
     <ion-item *ngFor="let comment of comentarios">
       <ion-avatar item-start>
-        <img src="assets/images/elkin.jpg">
+        <!-- <img src="assets/images/elkin.jpg"> -->
+        <ion-icon class="icon-user" name="contact"></ion-icon>
       </ion-avatar>
       <h2>{{ comment.usuario }}</h2>
       <p>{{ comment.comentario }}</p>
@@ -88,9 +89,9 @@
 
 
 
-<ion-footer>
+<!-- <ion-footer>
   <div class="footer-cliente" (click)="openPageCarrito()">
     <ion-icon tabBadge="14" tabBadgeStyle="danger" color="negro" name="ios-basket"></ion-icon>
     <span>{{ numProductos }}</span>
   </div>
-</ion-footer>
+</ion-footer> -->

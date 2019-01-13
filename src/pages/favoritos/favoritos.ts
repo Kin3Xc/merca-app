@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 
 
 @Component({
@@ -43,7 +43,6 @@ export class FavoritosPage {
   }
 
   deleteProducts(index){
-    console.log(index);
     this.products.splice(index, 1);
     localStorage.setItem('products', JSON.stringify(this.products));
     this.getLocalProducts();

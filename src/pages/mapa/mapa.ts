@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavParams, LoadingController, ModalController } from 'ionic-angular';
+import { NavParams, LoadingController } from 'ionic-angular';
 
 import { Geolocation  } from '@ionic-native/geolocation';
 
@@ -16,7 +16,6 @@ export class MapaPage {
   public loader:any;
 
   constructor(
-    private view: ViewController, 
     public geolocation: Geolocation,
     public loadingCtrl: LoadingController,
     public navParams: NavParams
@@ -39,10 +38,8 @@ export class MapaPage {
      this.loader.dismiss();
      this.loadMap(resp);
 
-     console.log(resp);
     }).catch((error) => {
       this.loader.dismiss();
-      console.log('Error getting location', error);
     });
 
     
@@ -82,6 +79,7 @@ export class MapaPage {
         map: this.map,
         icon: "./assets/icon/cafe-map.png"
       });
+      console.log(marker);
       mapEle.classList.add('show-map');
       
     });
