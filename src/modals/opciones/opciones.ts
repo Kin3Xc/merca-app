@@ -71,7 +71,9 @@ export class ModalOpciones {
         productos: this.carrito,
         total: this.total,
         subtotal: this.subtotal,
-        domicilio: this.domicilio
+        domicilio: this.domicilio,
+        proveedor: this.carrito[0].proveedor._id,
+        estado: 'Sin aceptar'
       };
       this.send(pedido);
     } else {
