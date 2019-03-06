@@ -18,11 +18,43 @@
 	}
 	.form{
 		padding:16px;
-		h2{
-			// text-align: center;
-			color: #999;
-			font-size: 18px;
-		}
+	}
+	h2{
+		// text-align: center;
+		color: #999;
+		font-size: 18px;
 	}
 	
+}
+
+.detalle-pedido{
+	background-color: #f8f8f8;
+	border-radius: 6px;
+	margin-bottom: 12px;
+	padding:12px;
+	color: #86888f;
+
+	hr{
+	   border-top: 1px #2ecc71 solid; 
+	}
+	span{
+		float: right;
+	}
+	p, h3{
+		padding: 0;
+		margin: 0;
+	}
+	h3{
+		color: #999;
+		font-size: 18px;
+	}
+	p{
+		font-size: 1.5rem;
+	}
+	.total{
+		font-weight: 800;
+		span{
+			font-weight: 800;
+		}
+	}
 }

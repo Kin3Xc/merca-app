@@ -7,8 +7,15 @@ import { NavController, ModalController } from 'ionic-angular';
 })
 export class MasPage {
   public items:any;
+  public pedidos: any = [];
   constructor(public navCtrl: NavController, public modal: ModalController) {
-    this.items = [ 'Centros de Salud', 'Droguerías', 'Iglesias', 'Bares','Discotecas', 'Supermercados', 'Café', 'Panaderías', 'Servicios'];
+  }
+
+  ionViewWillLoad() {
+    const pedidos = localStorage.getItem('pedidosList');
+    if(pedidos) {
+      this.pedidos = JSON.parse(pedidos);
+    }
   }
 
   openModalMas(item){
@@ -20,6 +27,11 @@ export class MasPage {
   	const myModal = this.modal.create('ModalCliente', {data : data});
 
   	myModal.present();
+  }
+
+  openModalLogin(){
+  	const site = this.modal.create('ModalLogin');
+  	site.present();
   }
 
 }

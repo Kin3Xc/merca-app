@@ -22,5 +22,13 @@ $ ionic cordova platform add ios
 $ ionic cordova run ios
 ```
 
+Generate for prod:
+
+```bash
+$ ionic cordova build android --prod --release -- -- --minSdkVersion=21
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore release-key-pideExpress.keystore app-release-unsigned.apk pideExpress
+$ zipalign -v 4 app-release-unsigned.apk pideExpress.apk
+```
+
 Substitute ios for android if not on a Mac.
 

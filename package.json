@@ -27,16 +27,13 @@
         "@ionic-native/status-bar": "3.12.1",
         "@ionic/storage": "2.0.1",
         "angularfire2": "^4.0.0-rc.2",
-        "cordova-android": "^6.3.0",
+        "cordova-android": "7.1.4",
         "cordova-ios": "4.5.5",
         "cordova-plugin-browsertab": "^0.2.0",
         "cordova-plugin-buildinfo": "^1.1.0",
         "cordova-plugin-compat": "^1.2.0",
         "cordova-plugin-console": "^1.0.7",
-        "cordova-plugin-customurlscheme": "^4.3.0",
         "cordova-plugin-device": "^1.1.6",
-        "cordova-plugin-geolocation": "^2.4.3",
-        "cordova-plugin-googleplus": "^5.1.1",
         "cordova-plugin-inappbrowser": "^1.7.1",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.3",
@@ -67,19 +64,9 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
-            "cordova-plugin-geolocation": {},
-            "cordova-plugin-googleplus": {
-                "REVERSED_CLIENT_ID": "com.googleusercontent.apps.736253765602-vv4ispbe06o9996ncdaunvga9igogk7p"
-            },
             "cordova-plugin-buildinfo": {},
             "cordova-plugin-browsertab": {},
             "cordova-plugin-inappbrowser": {},
-            "cordova-plugin-customurlscheme": {
-                "URL_SCHEME": "io.ionic.workcoffice",
-                "ANDROID_SCHEME": " ",
-                "ANDROID_HOST": " ",
-                "ANDROID_PATHPREFIX": "/"
-            },
             "phonegap-plugin-push": {
                 "SENDER_ID": "85075801930"
             },

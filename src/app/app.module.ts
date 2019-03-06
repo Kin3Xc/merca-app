@@ -21,23 +21,24 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 // firebase
-import { AngularFireModule } from 'angularfire2';
+/* import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth'; */
+
 import { ProvidersClientesProvider } from '../providers/providers-clientes/providers-clientes';
 import { ProvidersProductosProvider } from '../providers/providers-productos/providers-productos';
 import { CategoriasProvider } from '../providers/categorias/categorias';
 import { PedidoProvider } from '../providers/pedido/pedido';
 
 
-export const firebaseConfig = {
+/* export const firebaseConfig = {
   apiKey: "AIzaSyDJOMhLyQCxRryMxLWtCH-cLMa4Z45eCoI",
   authDomain: "workcoffice.firebaseapp.com",
   databaseURL: "https://workcoffice.firebaseio.com",
   projectId: "workcoffice",
   storageBucket: "workcoffice.appspot.com",
   messagingSenderId: "949394278476"
-};
+}; */
 
 
 @NgModule({
@@ -56,9 +57,9 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
+/*     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule,
+    AngularFireAuthModule, */
     HttpModule
   ],
   bootstrap: [IonicApp],

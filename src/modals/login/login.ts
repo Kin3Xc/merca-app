@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, ViewController } from 'ionic-angular';
 
-import { AngularFireAuth } from 'angularfire2/auth';
-import firebase from 'firebase';
+// import { AngularFireAuth } from 'angularfire2/auth';
+// import firebase from 'firebase';
 
 
 /**
@@ -21,8 +21,7 @@ export class ModalLogin {
   public userProfile:any = null;
   public user:any = null;
 
-  constructor( private view: ViewController,
-               private afAuth: AngularFireAuth) {
+  constructor( private view: ViewController) {
 
     // afAuth.authState.subscribe(user => {
     //   if (!user) {
@@ -31,13 +30,15 @@ export class ModalLogin {
     //   }
     //   this.userProfile = user;      
     // });
+    
 
-    firebase.auth().onAuthStateChanged( user => {
-    if (user) {
-      this.userProfile = user;
-    } else {
-    }
-  });
+    // firebase comment
+    /* firebase.auth().onAuthStateChanged( user => {
+      if (user) {
+        this.userProfile = user;
+      } else {
+      }
+    }); */
 
   }
 
@@ -47,7 +48,8 @@ export class ModalLogin {
 
   // signin with google
   signInWithGoogle(){
-    const provider = new firebase.auth.GoogleAuthProvider();
+    // firebase commented
+   /*  const provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth().signInWithRedirect(provider).then( () => {
       firebase.auth().getRedirectResult().then( result => {
@@ -61,15 +63,16 @@ export class ModalLogin {
       }).catch(function(error) {
         // Handle Errors here.
       });
-    });
+    }); */
   }
 
 
   // signin with facebook
   signInWithFacebook() {
-    this.afAuth.auth
+    // firebase commented
+    /* this.afAuth.auth
       .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then(res => {});
+      .then(res => {}); */
   }
 
 
@@ -79,7 +82,7 @@ export class ModalLogin {
 
   // signout
   signOut() {
-    this.afAuth.auth.signOut();
+    // this.afAuth.auth.signOut();
   }
 
 }

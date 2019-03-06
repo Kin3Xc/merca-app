@@ -76,6 +76,7 @@ export class ModalOpciones {
         estado: 'Sin aceptar'
       };
       this.send(pedido);
+      this.saveLocalPedido(pedido);
     } else {
       let toast = this.toast.create({
         message: 'Tienes campos vacíos, por favor verifica y vuelve a intentarlo',
@@ -83,6 +84,18 @@ export class ModalOpciones {
         position: 'top'
       });
       toast.present();
+    }
+  }
+
+  saveLocalPedido(pedido){
+    let listPedidos = [];
+    const pedidos = localStorage.getItem('pedidosList');
+    if (pedidos) {
+      listPedidos = JSON.parse(pedidos);
+      listPedidos.push(pedido);
+      localStorage.setItem('pedidosList', JSON.stringify(listPedidos))
+    } else {
+      localStorage.setItem('pedidosList', JSON.stringify([pedido]));
     }
   }
   

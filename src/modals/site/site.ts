@@ -93,6 +93,7 @@ export class ModalSite {
               localStorage.setItem('carritoPideYa', JSON.stringify([producto]));  
             }
             this.toast('Se agregó el producto a su pedido');
+            this.openPageCarrito();
           }
         }
       ]
@@ -136,7 +137,7 @@ export class ModalSite {
   }
 
   openPageCarrito(){
-    // this.closeModal();
+    this.closeModal();
     this.NavCtrl.push(CarritoPage);
   }
 

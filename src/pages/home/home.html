@@ -1,7 +1,8 @@
 <!--  page home -->
 <ion-header>
-    <ion-navbar color="hedaer">
-        <h2 class="title">PideYa! - Encuentra lo que quieres</h2>
+    <ion-navbar class="header">
+        <!-- <h2 class="title">PideYa! - Encuentra lo que quieres</h2> -->
+        <img class="logo" src="../../assets/logo-rapdexpress.png" alt="">
         <ion-buttons end>
             <button ion-button (click)="openModalLogin()">
                 <ion-icon name="happy"></ion-icon>
@@ -19,6 +20,9 @@
         <ion-segment-button value="5a725d0e7a2b4a070e3a209c">
             Productos
         </ion-segment-button>
+        <ion-segment-button value="5c7ea4bbfb6fc072012e73e0">
+            Licores
+        </ion-segment-button>
         <ion-segment-button value="5a725ea67a2b4a070e3a209e">
             Eventos
         </ion-segment-button>
@@ -26,6 +30,7 @@
 
     <div [ngSwitch]="action">
 
+        <!-- PRODUCTOS -->
         <ion-list *ngSwitchCase="'5a725d0e7a2b4a070e3a209c'">
             <ion-item *ngIf="clientes.length < 1">No hay productos disponibles</ion-item>
             <div class="cafe" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
@@ -81,6 +86,64 @@
             </div>
 
         </ion-list>
+
+        <!-- LICORES -->
+        <ion-list *ngSwitchCase="'5c7ea4bbfb6fc072012e73e0'">
+            <ion-item *ngIf="clientes.length < 1">No hay productos disponibles</ion-item>
+            <div class="cafe" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
+
+                <ion-item>
+                    <ion-thumbnail item-start>
+                        <img src="{{cliente.avatar}}">
+                    </ion-thumbnail>
+                    <h2>{{cliente.nombre}} <span class="price"> <ion-icon name="bicycle"></ion-icon> ${{cliente.domicilio}}</span></h2>
+                    <p>{{cliente.descripcion}}</p>
+                    <!-- <button ion-button clear item-end>$5k</button> -->
+                    <p class="star">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                    </p>
+                    <p>
+                        <ion-icon name="chatboxes"></ion-icon> 120
+                        <span class="time"><ion-icon name="alarm"></ion-icon> {{cliente.tiempoEntrega}} min</span>
+                    </p>
+
+                </ion-item>
+                <ion-row>
+
+
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="bicycle"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="cart"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="cash"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                        <ion-item>
+                            <ion-icon name="pin"></ion-icon>
+                        </ion-item>
+                    </ion-col>
+
+                </ion-row>
+
+            </div>
+
+        </ion-list>
+
 
 
 
