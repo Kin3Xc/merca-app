@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="co.elkinurango.merca" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>pidepress</name>
+<widget id="co.elkinurango.merca" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>PidEpress</name>
     <description>App para hacer mercado a domicilio</description>
     <author email="kin3xc@hotmail.com" href="http://www.elkinurango.co/">Elkin Urango</author>
     <content src="index.html" />
@@ -12,12 +12,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <universal-links>
-        <host name="https://s8xb4.app.goo.gl/" scheme="https" />
-        <host name="merca.firebaseapp.com" scheme="https">
-            <path url="/__/auth/callback" />
-        </host>
-    </universal-links>
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

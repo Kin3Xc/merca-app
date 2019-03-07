@@ -92,8 +92,8 @@ export class ModalSite {
             }else{
               localStorage.setItem('carritoPideYa', JSON.stringify([producto]));  
             }
+            this.getNumProductos();
             this.toast('Se agregó el producto a su pedido');
-            this.openPageCarrito();
           }
         }
       ]
@@ -106,7 +106,7 @@ export class ModalSite {
     let toast = this.Toast.create({
       message: message,
       duration: 3000,
-      position: 'bottom'
+      position: 'top'
     });
     toast.present();
   }
@@ -137,7 +137,7 @@ export class ModalSite {
   }
 
   openPageCarrito(){
-    this.closeModal();
+    // this.closeModal();
     this.NavCtrl.push(CarritoPage);
   }
 
