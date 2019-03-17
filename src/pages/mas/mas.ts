@@ -11,7 +11,7 @@ export class MasPage {
   constructor(public navCtrl: NavController, public modal: ModalController) {
   }
 
-  ionViewWillLoad() {
+  ionViewDidEnter() {
     const pedidos = localStorage.getItem('pedidosList');
     if(pedidos) {
       this.pedidos = JSON.parse(pedidos);

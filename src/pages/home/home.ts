@@ -20,7 +20,7 @@ export class HomePage {
     private loadingCtrl: LoadingController,
     private _categorias: CategoriasProvider) {}
   
-  ionViewWillLoad() {
+    ionViewDidEnter() {
     this.getCategorias();
   }
 

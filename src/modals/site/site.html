@@ -59,9 +59,9 @@
         <img src="{{ producto.image }}">
       </ion-thumbnail>
       <h2 color="gris">{{ producto.nombre }}</h2>
-      <button float-right ion-button color="negro" (click)="addProducto(producto)" outline>Agregar al pedido</button>
-      <p>{{ producto.descripcion }}</p>
+      <p class="description">{{ producto.descripcion }}</p>
       <p>${{ producto.precio }}</p>
+      <button ion-button (click)="addProducto(producto)" outline>Agregar al pedido</button>
     </ion-item>
 
   </ion-list>

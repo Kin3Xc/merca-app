@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the ModalMas page.
@@ -14,12 +14,14 @@ import { IonicPage, ViewController } from 'ionic-angular';
 })
 export class ModalMas {
   public name:string;
+  public producto: any;
   
-  constructor(private view: ViewController) {
+  constructor(private view: ViewController, private navParams: NavParams) {
   }
 
   ionViewWillLoad() {
-    
+    this.producto = this.navParams.get('producto');
+    console.log(this.producto);
   }
 
   closeModal(){

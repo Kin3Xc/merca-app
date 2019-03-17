@@ -33,7 +33,7 @@
         <!-- PRODUCTOS -->
         <ion-list *ngSwitchCase="'5a725d0e7a2b4a070e3a209c'">
             <ion-item *ngIf="clientes.length < 1">No hay productos disponibles</ion-item>
-            <div class="cafe" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
+            <div class="cafe productos" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
 
                 <ion-item>
                     <ion-thumbnail item-start>
@@ -90,7 +90,7 @@
         <!-- LICORES -->
         <ion-list *ngSwitchCase="'5c7ea4bbfb6fc072012e73e0'">
             <ion-item *ngIf="clientes.length < 1">No hay productos disponibles</ion-item>
-            <div class="cafe" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
+            <div class="cafe licores" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
 
                 <ion-item>
                     <ion-thumbnail item-start>
@@ -209,7 +209,7 @@
         <div class="eventos" *ngSwitchCase="'5a725ea67a2b4a070e3a209e'">
             <ion-list *ngFor="let evento of eventos">
 
-                <ion-list-header>{{ evento.fecha }}</ion-list-header>
+                <ion-list-header>{{ evento.fecha | date:'dd/MMM/yyyy'}}</ion-list-header>
 
                 <ion-item>
                     <ion-avatar item-start>
