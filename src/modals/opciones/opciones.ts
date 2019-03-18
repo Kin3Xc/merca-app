@@ -109,12 +109,12 @@ export class ModalOpciones {
     this._pedidos.sendPedido(pedido).then(res => {
       localStorage.removeItem('carritoPideYa');
       loading.dismiss();
-      let toast = this.toast.create({
+     /*  let toast = this.toast.create({
         message: 'Hemos recibido tu pedido, pronto nos comunicaremos para la entrega',
         duration: 3000,
         position: 'top'
       });
-      toast.present();
+      toast.present(); */
       this.goStatus();
     }, err => {
       loading.dismiss();
