@@ -109,3 +109,21 @@
     border-radius:10px !important;
 }
 
+.ios, .md {
+
+    page-home {
+      ion-slides{
+        height: auto !important;
+      }
+      ion-slide {
+        // background-color: #32db64;
+      }
+  
+      ion-slide img {
+        /* height: 425px !important;
+        width: auto !important; */
+      }
+  
+    }
+  
+  }
