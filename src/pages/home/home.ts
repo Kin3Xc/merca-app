@@ -38,7 +38,9 @@ export class HomePage {
 
   getClientes(categoria){
     this.clienteProvider.getClientes(categoria).then(res=>{
-      this.clientes = res;
+      if(res && res.length > 0) {
+        this.clientes = res.filter(cliente => cliente.estado === 'activo');
+      }
       this.loading.dismiss();
     }).catch(err=>{
       this.loading.dismiss();

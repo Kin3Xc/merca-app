@@ -60,7 +60,9 @@ export class ModalSite {
   getProductos(cliente){
     let id = cliente._id;
     this.Productos.getProductos(id).then(res=>{
-      this.productos = res;
+      if (res && res.length > 0) {
+        this.productos = res.filter(producto => producto.estado === 'activo');
+      }
     }).catch(err=>{})
   }
 
@@ -116,20 +118,24 @@ export class ModalSite {
   }
 
   addComment(){
-    let fecha:Date = new Date();
-    let idProveedor = this.returnID(this.cliente);
+    if (this.comentario) {
+      let fecha:Date = new Date();
+      let idProveedor = this.returnID(this.cliente);
 
-    let comentario = {
-      comentario: this.comentario,
-      usuario: 'Anonimo',
-      hora: `${fecha.getDate()}/${fecha.getMonth()+1} - ${fecha.getHours()}:${fecha.getMinutes()}`,
-      proveedor: idProveedor
-    };
+      let comentario = {
+        comentario: this.comentario,
+        usuario: 'Anonimo',
+        hora: `${fecha.getDate()}/${fecha.getMonth()+1} - ${fecha.getHours()}:${fecha.getMinutes()}`,
+        proveedor: idProveedor
+      };
 
-    this.Clientes.addComentario(comentario).then(res=>{
-      this.getComentarios(this.cliente);
-      this.comentario = '';
-    }).catch(err=> {})
+      this.Clientes.addComentario(comentario).then(res=>{
+        this.getComentarios(this.cliente);
+        this.comentario = '';
+      }).catch(err=> {})
+    } else {
+      this.toast('Debes ingresar un mensaje');
+    }
   }
 
   closeModal(){

@@ -91,17 +91,20 @@
     }
 
     .eventos{
-        ion-note{
-            font-size: 12px;
-            align-self: flex-start;
-            margin-top: 14px;
-        }
-        .list-header-md{
-            margin:0;
-        }
-        ion-list{
+      ion-note{
+        font-size: 12px;
+        align-self: flex-start;
+        margin-top: 14px;
+      }
+      .list-header-md{
+        margin:0;
+      }
+      ion-list{
         border-left:10px solid #2980b9;
-    }
+      }
+      .description{ 
+        white-space: pre-line;
+      }
     }
 	
 }
