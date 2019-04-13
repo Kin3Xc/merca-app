@@ -35,6 +35,12 @@ export class ProvidersClientesProvider {
     .toPromise();
   }
 
+  getSliders() {
+    return this.http.get(`${AppConfig.API_URL}/slider`)
+    .map(res => res.json())
+    .toPromise();
+  }
+
   addComentario(comment) {
     return this.http.post(`${AppConfig.API_URL}/comentario`, comment)
     .map(res => res.json())

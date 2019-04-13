@@ -13,6 +13,7 @@ export class HomePage {
   public loading:any;
   public eventos:any =[];
   categorias: any = [];
+  sliders: any = [];
 
   constructor(
     public modal: ModalController, 
@@ -20,8 +21,9 @@ export class HomePage {
     private loadingCtrl: LoadingController,
     private _categorias: CategoriasProvider) {}
   
-    ionViewDidEnter() {
+  ionViewDidEnter() {
     this.getCategorias();
+    this.getSliders();
   }
 
   getCategorias() {
@@ -50,6 +52,17 @@ export class HomePage {
   getEventos(id){
     this.clienteProvider.getEventos(id).then(res=>{
       this.eventos = res;
+    }).catch(err=> console.log(err) )
+  }
+
+  getSliders() {
+    this.clienteProvider.getSliders().then(res=>{
+      if (res && res.length > 0) {
+        this.sliders = res.filter(slider => slider.estado === 'activo');
+        console.log(this.sliders)
+      } else {
+        this.sliders = [];
+      }
     }).catch(err=> console.log(err) )
   }
 
