@@ -26,7 +26,7 @@ import { ProvidersProductosProvider } from '../providers/providers-productos/pro
 import { CategoriasProvider } from '../providers/categorias/categorias';
 import { PedidoProvider } from '../providers/pedido/pedido';
 
-import { Push } from '@ionic-native/push/ngx';
+/* import { Push } from '@ionic-native/push/ngx'; */
 
 
 @NgModule({
@@ -69,7 +69,7 @@ import { Push } from '@ionic-native/push/ngx';
     ProvidersProductosProvider,
     CategoriasProvider,
     PedidoProvider,
-    Push
+    /* Push */
   ]
 })
 export class AppModule {}

@@ -29,21 +29,15 @@
     </ion-segment>
 
     <!-- slider for promotions -->
-    <ion-slides autoplay="5000" loop="true" speed="500" pager="false">
+    <ng-container *ngIf="sliders && sliders.length > 0">
+      <ion-slides autoplay="5000" loop="true" speed="500" pager="false">
 
-        <ion-slide>
-          <img src="../../assets/slider/slider1.png" />
-        </ion-slide>
-      
-        <ion-slide>
-          <img src="../../assets/slider/slider2.png" />
-        </ion-slide>
-      
-        <ion-slide>
-          <img src="../../assets/slider/slider3.png" />
-        </ion-slide>
-      
-    </ion-slides>
+          <ion-slide *ngFor="let slider of sliders">
+            <img [src]="slider.image" />
+          </ion-slide>
+        
+      </ion-slides>
+    </ng-container>
 
     <div [ngSwitch]="action">
 

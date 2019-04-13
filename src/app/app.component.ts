@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 
 // Implementamos la librería de notificaciones Push.
-import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
+/* import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx'; */
 
 @Component({
   templateUrl: 'app.html'
@@ -18,7 +18,7 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private push: Push) {
+    /* private push: Push */) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -26,11 +26,11 @@ export class MyApp {
       splashScreen.hide();
 
       // Llamada a la función push.
-      this.pushSetup();
+      // this.pushSetup();
     });
   }
 
-  pushSetup(){
+/*   pushSetup(){
     const options: PushOptions = {
        android: {
         // Añadimos el sender ID para Android.
@@ -51,5 +51,5 @@ export class MyApp {
     pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
     pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
     pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-  }
+  } */
 }
