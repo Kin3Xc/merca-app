@@ -42,6 +42,8 @@ export class HomePage {
     this.clienteProvider.getClientes(categoria).then(res=>{
       if(res && res.length > 0) {
         this.clientes = res.filter(cliente => cliente.estado === 'activo');
+      } else {
+        this.clientes = [];
       }
       this.loading.dismiss();
     }).catch(err=>{
@@ -59,7 +61,6 @@ export class HomePage {
     this.clienteProvider.getSliders().then(res=>{
       if (res && res.length > 0) {
         this.sliders = res.filter(slider => slider.estado === 'activo');
-        console.log(this.sliders)
       } else {
         this.sliders = [];
       }
