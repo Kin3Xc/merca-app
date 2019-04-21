@@ -40,11 +40,7 @@ export class HomePage {
 
   getClientes(categoria){
     this.clienteProvider.getClientes(categoria).then(res=>{
-      if(res && res.length > 0) {
-        this.clientes = res.filter(cliente => cliente.estado === 'activo');
-      } else {
-        this.clientes = [];
-      }
+      this.clientes = res;
       this.loading.dismiss();
     }).catch(err=>{
       this.loading.dismiss();
@@ -59,11 +55,7 @@ export class HomePage {
 
   getSliders() {
     this.clienteProvider.getSliders().then(res=>{
-      if (res && res.length > 0) {
-        this.sliders = res.filter(slider => slider.estado === 'activo');
-      } else {
-        this.sliders = [];
-      }
+      this.sliders = res;
     }).catch(err=> console.log(err) )
   }
 
