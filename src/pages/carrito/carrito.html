@@ -1,69 +1,55 @@
-<!--
-  Generated template for the CarritoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
-	<ion-navbar color="hedaer">
-			<h2 class="title">PideYa! - Encuentra lo que quieres</h2>
-			<ion-buttons end>
-					<button ion-button (click)="openModalLogin()">
-							<ion-icon name="happy"></ion-icon>
-					</button>
-			</ion-buttons>
-	</ion-navbar>
-</ion-header> -->
-
 <ion-header>
-	<ion-navbar class="header">
-		<img class="logo" src="assets/logo-rapdexpress.png" alt="">
-		<ion-buttons end>
-			<button ion-button (click)="openModalLogin()">
-				<ion-icon name="happy"></ion-icon>
-			</button>
-		</ion-buttons>
-	</ion-navbar>
+  <ion-navbar class="header">
+    <img class="logo" src="assets/logo-rapdexpress.png" alt="" />
+    <ion-buttons end>
+      <button ion-button (click)="openModalLogin()">
+        <ion-icon name="happy"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
-<ion-content class="page-carrito" >
+<ion-content class="page-carrito">
+  <ion-item>
+    <ion-note item-start>Sub Total</ion-note>
+    <ion-note item-end>${{ subtotal }}</ion-note>
+  </ion-item>
 
-	<ion-item>
-		<ion-note item-start>Sub Total</ion-note>
-		<ion-note item-end>${{ subtotal }}</ion-note>
-	</ion-item>
+  <ion-item>
+    <ion-note item-start>Domicilio</ion-note>
+    <ion-note *ngIf="subtotal > 0" item-end>${{ domicilio }}</ion-note>
+    <ion-note *ngIf="subtotal === 0" item-end>$0</ion-note>
+  </ion-item>
 
-	<ion-item>
-		<ion-note item-start>Domicilio</ion-note>
-		<ion-note *ngIf="subtotal > 0" item-end>${{ domicilio }}</ion-note>
-		<ion-note *ngIf="subtotal === 0" item-end>$0</ion-note>
-	</ion-item>
+  <ion-item>
+    <ion-note class="total" item-start>Total a Pagar</ion-note>
+    <ion-note *ngIf="subtotal > 0" class="total" item-end
+      >${{ total }}</ion-note
+    >
+    <ion-note *ngIf="subtotal === 0" class="total" item-end>$0</ion-note>
+  </ion-item>
 
-	<ion-item>
-		<ion-note class="total" item-start>Total a Pagar</ion-note>
-		<ion-note *ngIf="subtotal > 0" class="total" item-end>${{ total }}</ion-note>
-		<ion-note *ngIf="subtotal === 0" class="total" item-end>$0</ion-note>
-	</ion-item>
-	
-	<div class="productos">
-		<!-- <hr> -->
-		<h2 padding>Productos en el pedido</h2>
-		<ion-item *ngFor="let producto of carrito; let i = index">
-	        <ion-thumbnail item-start>
-	          <img src="{{ producto.image }}">
-	        </ion-thumbnail>
-	        <h2>{{  producto.nombre }} </h2>
-	        <p>{{ producto.categoria.nombre }}</p>
-	        <ion-icon (click)="deleteProducto(i)" item-end name="trash"></ion-icon>
-	        <p class="price">${{ producto.precio }}</p>
-	    </ion-item>
-		</div>
-		
-		<button [disabled]="subtotal === 0" (click)="openModalCarrito()" class="btn-pagar" ion-button full>Confirmar pedido por ${{ total }}</button>
+  <div class="productos">
+    <!-- <hr> -->
+    <h2 padding>Productos en el pedido</h2>
+    <ion-item *ngFor="let producto of carrito; let i = index">
+      <ion-thumbnail item-start>
+        <img src="{{ producto.image }}" />
+      </ion-thumbnail>
+      <h2>{{ producto.nombre }}</h2>
+      <p>{{ producto.categoria.nombre }}</p>
+      <ion-icon (click)="deleteProducto(i)" item-end name="trash"></ion-icon>
+      <p class="price">${{ producto.precio }}</p>
+    </ion-item>
+  </div>
 
+  <button
+    [disabled]="subtotal === 0"
+    (click)="openModalCarrito()"
+    class="btn-pagar"
+    ion-button
+    full
+  >
+    Confirmar pedido por ${{ total }}
+  </button>
 </ion-content>
-
-
-<!-- <ion-footer>
-  <button (click)="openModalCarrito()" class="btn-pagar" ion-button full>Confirmar pedido por $31.000</button>
-</ion-footer> -->
