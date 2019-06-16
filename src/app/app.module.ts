@@ -22,6 +22,8 @@ import { ProvidersProductosProvider } from "../providers/providers-productos/pro
 import { CategoriasProvider } from "../providers/categorias/categorias";
 import { PedidoProvider } from "../providers/pedido/pedido";
 
+import { SocketIO } from "../providers/socket";
+
 /* import { Push } from '@ionic-native/push/ngx'; */
 
 @NgModule({
@@ -44,7 +46,8 @@ import { PedidoProvider } from "../providers/pedido/pedido";
     ProvidersClientesProvider,
     ProvidersProductosProvider,
     CategoriasProvider,
-    PedidoProvider
+    PedidoProvider,
+    SocketIO
     /* Push */
   ]
 })
