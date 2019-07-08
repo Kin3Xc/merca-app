@@ -1,6 +1,9 @@
 
 .modal-cliente{
-
+    .thumbnail{
+        width: 120px;
+        height: auto;
+    }
     .scroll-content{
         margin-bottom:30px !important;
     }
@@ -39,7 +42,7 @@
             }
         }
         img{
-            width: 80px; 
+            width: 120px; 
         }
         h3{
             color: #212121;
@@ -92,6 +95,10 @@
         font-size:24px;
     }
 
+}
+ion-thumbnail img{
+    width: 115px !important;
+    height: auto !important;
 }
 
 .footer-cliente{
