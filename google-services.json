@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "5937485844",
+    "firebase_url": "https://merca-bf260.firebaseio.com",
+    "project_id": "merca-bf260",
+    "storage_bucket": "merca-bf260.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5937485844:android:232719a7e5933847",
+        "android_client_info": {
+          "package_name": "co.elkinurango.merca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5937485844-soihbsna9mcl5qhta56qreord0ca9ueg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGbhJ3A1z1qjxydKgoWVbr8SAFN4J7q50"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5937485844-soihbsna9mcl5qhta56qreord0ca9ueg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

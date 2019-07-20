@@ -24,7 +24,7 @@ import { PedidoProvider } from "../providers/pedido/pedido";
 
 import { SocketIO } from "../providers/socket";
 
-/* import { Push } from '@ionic-native/push/ngx'; */
+import { Push } from '@ionic-native/push';
 
 @NgModule({
   declarations: [MyApp, HomePage, CarritoPage, MasPage, TabsPage, StatusPage],
@@ -47,8 +47,8 @@ import { SocketIO } from "../providers/socket";
     ProvidersProductosProvider,
     CategoriasProvider,
     PedidoProvider,
-    SocketIO
-    /* Push */
+    SocketIO,
+    Push
   ]
 })
 export class AppModule {}
