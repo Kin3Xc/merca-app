@@ -14,6 +14,7 @@ export class HomePage {
   public eventos:any =[];
   categorias: any = [];
   sliders: any = [];
+  public itemSelected: string;
 
   constructor(
     public modal: ModalController, 
@@ -29,9 +30,13 @@ export class HomePage {
   getCategorias() {
     this.showLoading();
     this._categorias.getCategorias().then(res => {
-      this.categorias = res;
-      this.action = res.length > 0 ? res[1]._id : '';
-      this.getClientes(this.action);
+      if(res.length > 0 ){
+        this.categorias = res.sort((a,b)=> a.order - b.order);
+
+        this.action = this.categorias[0].nombre;
+        this.itemSelected = this.action;
+        this.getClientes(this.categorias[0]._id);
+      }
       // this.loading.dismiss();
     }, err => {
       this.loading.dismiss();
@@ -60,12 +65,15 @@ export class HomePage {
   }
 
   onChangeMenu(event){
-    if(this.action == '5a725ea67a2b4a070e3a209e'){
-      this.getEventos('5a725ea67a2b4a070e3a209e');
-    }else{
-      this.getClientes(this.action);  
-    }
+    const categoryList: any = this.categorias;
+    const category: any = categoryList.filter(item => item.nombre === event).shift();
     
+    if(category.evento){
+      this.getEventos(category._id);
+    } else {
+      this.itemSelected = event;
+      this.getClientes(category._id);
+    }
   }
 
   showLoading(){

@@ -35,38 +35,41 @@
   </ion-grid>
   
 
-  <div padding>
-    <ion-segment [(ngModel)]="pet">
-  
-      <ion-segment-button value="menu">
-        Productos
-      </ion-segment-button>
-
-      <ion-segment-button value="comments">
-        Comentarios
-      </ion-segment-button>
+  <div class="first-menu" *ngIf="siteMenu.length > 0">
+    <ion-segment (ionChange)="onChangeMenu($event.value)" [(ngModel)]="menuList">
+      <ng-container *ngFor="let option of siteMenu">
+        <ion-segment-button [value]="option.name">
+          {{ option.title }}
+        </ion-segment-button>
+      </ng-container>
     </ion-segment>
   </div>
 
+  <div [ngSwitch]="menuList">
+  <ion-list *ngSwitchCase="itemSelected">
 
-  <div [ngSwitch]="pet">
+    <ng-container *ngIf="productos && productos.length > 0">
+      <ion-item *ngFor="let producto of productos">
+        <ion-thumbnail item-start>
+          <img src="{{ producto.image }}">
+        </ion-thumbnail>
+        <h2 color="gris">{{ producto.nombre }}</h2>
+        <p class="description">{{ producto.descripcion }}</p>
+        <p>${{ producto.precio }}</p>
+        <button ion-button (click)="addProducto(producto)" outline>Agregar al pedido</button>
+      </ion-item>
+    </ng-container>
 
-
-  <ion-list *ngSwitchCase="'menu'">
-
-    <ion-item *ngFor="let producto of productos">
-      <ion-thumbnail item-start>
-        <img src="{{ producto.image }}">
-      </ion-thumbnail>
-      <h2 color="gris">{{ producto.nombre }}</h2>
-      <p class="description">{{ producto.descripcion }}</p>
-      <p>${{ producto.precio }}</p>
-      <button ion-button (click)="addProducto(producto)" outline>Agregar al pedido</button>
-    </ion-item>
+    <ng-container *ngIf="!productos || !productos.length && itemSelected !== 'comentarios'">
+      <ion-item>
+        <p>No hay productos</p>
+      </ion-item>
+    </ng-container>
+    
 
   </ion-list>
 
-  <ion-list *ngSwitchCase="'comments'">
+  <ion-list *ngSwitchCase="'comentarios'">
     <div padding class="comment">
        <ion-textarea [(ngModel)]="comentario" rows="4" placeholder="Ingresa tus comentarios"></ion-textarea>
        <button (click)="addComment()" color="primary" ion-button block>Comentar</button>

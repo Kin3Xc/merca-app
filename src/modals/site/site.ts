@@ -24,12 +24,15 @@ import { CarritoPage } from '../../pages/carrito/carrito';
   templateUrl: 'site.html',
 })
 export class ModalSite {
-  public cliente:string;
-  public pet: string = "menu";
+  public cliente: any;
+  public menuList: string;
   public productos: any = [];
   public comentarios: any = [];
   public comentario:string;
   public numProductos:number;
+  // public siteMenu = ['cerveza', 'ron', 'aguardiante', 'comentarios' ];
+  public siteMenu = [];
+  public itemSelected: string;
 
 
   constructor(
@@ -47,9 +50,22 @@ export class ModalSite {
 
   ionViewWillLoad() {
     this.cliente = this.navParams.get('cliente');
+    this.getSections(this.cliente._id);
     this.getNumProductos();
-    this.getProductos(this.cliente);
     this.getComentarios(this.cliente);
+  }
+
+  getSections(proveedor){
+    this.Productos.getSections(proveedor).then(res => {
+      this.siteMenu = res;
+      if(this.siteMenu.length > 0){
+        this.itemSelected = this.siteMenu[0].name;
+        this.menuList = this.itemSelected;
+        this.getProductos(this.cliente, this.siteMenu[0]._id);
+      }
+    }).catch(err=>{
+      console.log(err);
+    })
   }
 
   getNumProductos(){
@@ -57,11 +73,13 @@ export class ModalSite {
     if(carrito) this.numProductos = carrito.length;
   }
 
-  getProductos(cliente){
+  getProductos(cliente, section){
     let id = cliente._id;
-    this.Productos.getProductos(id).then(res=>{
+    this.Productos.getProductos(id, section).then(res=>{
       if (res && res.length > 0) {
         this.productos = res.filter(producto => producto.estado === 'activo');
+      } else {
+        this.productos = [];
       }
     }).catch(err=>{})
   }
@@ -145,6 +163,15 @@ export class ModalSite {
   openPageCarrito(){
     // this.closeModal();
     this.NavCtrl.push(CarritoPage);
+  }
+
+  onChangeMenu(event: any){
+    if(event.name !== 'comentarios'){
+      this.itemSelected = event;
+    }
+    const menu: any = this.siteMenu;
+    const itemMenu = menu.filter(item => item.name === event).shift();
+    this.getProductos(this.cliente, itemMenu._id);
   }
 
 }
