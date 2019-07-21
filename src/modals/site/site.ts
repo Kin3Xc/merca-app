@@ -5,7 +5,8 @@ import {
   NavController, 
   ViewController,
   ToastController,
-  AlertController
+  AlertController,
+  LoadingController
 } from 'ionic-angular';
 
 import { ProvidersProductosProvider } from '../../providers/providers-productos/providers-productos';
@@ -33,6 +34,7 @@ export class ModalSite {
   // public siteMenu = ['cerveza', 'ron', 'aguardiante', 'comentarios' ];
   public siteMenu = [];
   public itemSelected: string;
+  public loading: any;
 
 
   constructor(
@@ -42,6 +44,7 @@ export class ModalSite {
     private Productos: ProvidersProductosProvider,
     private Clientes: ProvidersClientesProvider,
     private Toast: ToastController,
+    private loadingCtrl: LoadingController,
     public alertCtrl: AlertController) {
 
     this.numProductos = 0;
@@ -55,12 +58,22 @@ export class ModalSite {
     this.getComentarios(this.cliente);
   }
 
+  showLoading(){
+    this.loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: 'Cargando datos...'
+    });
+  
+    this.loading.present();
+  }
+
   getSections(proveedor){
     this.Productos.getSections(proveedor).then(res => {
       this.siteMenu = res;
       if(this.siteMenu.length > 0){
         this.itemSelected = this.siteMenu[0].name;
         this.menuList = this.itemSelected;
+        this.showLoading();
         this.getProductos(this.cliente, this.siteMenu[0]._id);
       }
     }).catch(err=>{
@@ -70,18 +83,22 @@ export class ModalSite {
 
   getNumProductos(){
     let carrito = JSON.parse(localStorage.getItem('carritoPideYa'));
-    if(carrito) this.numProductos = carrito.length;
+    if(carrito && carrito.productos) this.numProductos = carrito.productos.length;
   }
 
   getProductos(cliente, section){
     let id = cliente._id;
     this.Productos.getProductos(id, section).then(res=>{
+      this.loading.dismiss();
       if (res && res.length > 0) {
         this.productos = res.filter(producto => producto.estado === 'activo');
       } else {
         this.productos = [];
       }
-    }).catch(err=>{})
+    }).catch(err=>{
+      console.log(err);
+      this.loading.dismiss();
+    })
   }
 
   getComentarios(cliente){
@@ -92,7 +109,7 @@ export class ModalSite {
   }
 
   addProducto(producto){
-
+    producto.cantidad = 1;
     const confirm = this.alertCtrl.create({
       title: 'Confirmación',
       message: `Seguro que desea algregar el producto '${producto.nombre}' a su pedido? `,
@@ -106,11 +123,14 @@ export class ModalSite {
           text: 'Agregar',
           handler: () => {
             let carrito = JSON.parse(localStorage.getItem('carritoPideYa'));
-            if(carrito){
-              carrito.push(producto);
-              localStorage.setItem('carritoPideYa', JSON.stringify(carrito));  
+            if(carrito && carrito.productos){
+              carrito.productos.push(producto);
+              localStorage.setItem('carritoPideYa', JSON.stringify(carrito));
             }else{
-              localStorage.setItem('carritoPideYa', JSON.stringify([producto]));  
+              localStorage.setItem('carritoPideYa', JSON.stringify({
+                comercio: this.cliente,
+                productos: [producto]
+              }));  
             }
             this.getNumProductos();
             this.toast('Se agregó el producto a su pedido');
@@ -125,7 +145,7 @@ export class ModalSite {
   toast(message){
     let toast = this.Toast.create({
       message: message,
-      duration: 3000,
+      duration: 1000,
       position: 'top'
     });
     toast.present();
@@ -166,12 +186,15 @@ export class ModalSite {
   }
 
   onChangeMenu(event: any){
+    
     if(event.name !== 'comentarios'){
       this.itemSelected = event;
+    } else {
+      const menu: any = this.siteMenu;
+      const itemMenu = menu.filter(item => item.name === event).shift();
+      this.showLoading();
+      this.getProductos(this.cliente, itemMenu._id);
     }
-    const menu: any = this.siteMenu;
-    const itemMenu = menu.filter(item => item.name === event).shift();
-    this.getProductos(this.cliente, itemMenu._id);
   }
 
 }

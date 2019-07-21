@@ -23,10 +23,7 @@
 
   <ion-item>
     <ion-note class="total" item-start>Total a Pagar</ion-note>
-    <ion-note *ngIf="subtotal > 0" class="total" item-end
-      >${{ total }}</ion-note
-    >
-    <ion-note *ngIf="subtotal === 0" class="total" item-end>$0</ion-note>
+    <ion-note class="total" item-end>${{ total }}</ion-note>
   </ion-item>
 
   <div class="productos">
@@ -38,8 +35,11 @@
       </ion-thumbnail>
       <h2>{{ producto.nombre }}</h2>
       <p>{{ producto.categoria.nombre }}</p>
-      <ion-icon (click)="deleteProducto(i)" item-end name="trash"></ion-icon>
+      <ion-icon (click)="deleteProducto(producto._id)" item-end name="trash"></ion-icon>
       <p class="price">${{ producto.precio }}</p>
+      <button (click)="restar(producto, i)" ion-button color="light" round>-</button>
+      <button ion-button color="light">{{ producto.cantidad }}</button>
+      <button (click)="sumar(producto, i)" ion-button color="light" round>+</button>
     </ion-item>
   </div>
 

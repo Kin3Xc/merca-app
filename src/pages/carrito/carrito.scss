@@ -1,6 +1,6 @@
 .page-carrito {
 	.item-md.item-block .item-inner{
-		border:none !important;
+		/* border:none !important; */
 	}
 	ion-note{
 		color:#666;
@@ -12,7 +12,7 @@
 	.productos{
 		h2{
 			color:#666;
-			font-size:20px;
+			font-size:1.5rem;
 		}
 		.time{
             float:right;
@@ -27,12 +27,16 @@
 	    	color:#666;
 	    }
 	}
+	ion-thumbnail{
+		width: 80px;
+		height: auto;
+	}
 }
 
 .btn-pagar{
-	background-color:#000;
+	background-color:#6bb34d;
 	color:#fff;
 	padding:28px;
 	margin:0;
-	margin-top: 22px;
+	margin-top: 50px;
 }

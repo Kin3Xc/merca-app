@@ -23,6 +23,7 @@ export class HomePage {
     private _categorias: CategoriasProvider) {}
   
   ionViewDidEnter() {
+    this.categorias = [];
     this.getCategorias();
     this.getSliders();
   }
@@ -37,7 +38,6 @@ export class HomePage {
         this.itemSelected = this.action;
         this.getClientes(this.categorias[0]._id);
       }
-      // this.loading.dismiss();
     }, err => {
       this.loading.dismiss();
     })
@@ -53,9 +53,11 @@ export class HomePage {
   }
 
   getEventos(id){
+    this.showLoading();
     this.clienteProvider.getEventos(id).then(res=>{
+      this.loading.dismiss();
       this.eventos = res;
-    }).catch(err=> console.log(err) )
+    }).catch(err=> this.loading.dismiss() )
   }
 
   getSliders() {
@@ -67,11 +69,12 @@ export class HomePage {
   onChangeMenu(event){
     const categoryList: any = this.categorias;
     const category: any = categoryList.filter(item => item.nombre === event).shift();
-    
+
     if(category.evento){
       this.getEventos(category._id);
     } else {
       this.itemSelected = event;
+      this.showLoading();
       this.getClientes(category._id);
     }
   }
