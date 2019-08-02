@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+// import { FirebaseService } from '../services/firebase';
+import { DeviceService } from '../services/devices';
 
 // Implementamos la librería de notificaciones Push.
-/* import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx'; */
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,10 +17,12 @@ export class MyApp {
   rootPage:any = TabsPage;
 
   constructor(
-    platform: Platform,
+    private platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    /* private push: Push */) {
+    private alertCtrl: AlertController,
+    private device: DeviceService,
+    private push: Push) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -26,30 +30,48 @@ export class MyApp {
       splashScreen.hide();
 
       // Llamada a la función push.
-      // this.pushSetup();
+      this.pushSetup();
     });
   }
-
-/*   pushSetup(){
+  presentAlert(data) {
+    let alert = this.alertCtrl.create({
+      title: data.title,
+      subTitle: data.message,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  pushSetup(){
     const options: PushOptions = {
-       android: {
+      android: {
         // Añadimos el sender ID para Android.
         senderID: '5937485844'
-       },
-       ios: {
+      },
+      ios: {
         alert: 'true',
         badge: true,
-        sound: 'true'
-       },
-       browser: {
-        pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+        sound: 'false'
       }
-    };
- 
-    const pushObject: PushObject = this.push.init(options);
- 
-    pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
-    pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
-    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-  } */
+   };
+   
+   const pushObject: PushObject = this.push.init(options);
+
+   pushObject.on('notification').subscribe((notification: any) => {
+    // console.log('Received a notification', notification);
+    this.presentAlert(notification);
+   });
+   3
+   pushObject.on('registration').subscribe((registration: any) => {
+    // console.log('Device registered', registration);
+    this.device.saveToken({
+      uid: registration.registrationId,
+      platform: 'android',//this.platform.platforms,
+      token: registration,
+      type: 'user'
+    }).then(res => {});
+   });
+
+   pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
+
+ }
 }

@@ -14,6 +14,7 @@ export class HomePage {
   public eventos:any =[];
   categorias: any = [];
   sliders: any = [];
+  public itemSelected: string;
 
   constructor(
     public modal: ModalController, 
@@ -22,6 +23,7 @@ export class HomePage {
     private _categorias: CategoriasProvider) {}
   
   ionViewDidEnter() {
+    this.categorias = [];
     this.getCategorias();
     this.getSliders();
   }
@@ -29,10 +31,13 @@ export class HomePage {
   getCategorias() {
     this.showLoading();
     this._categorias.getCategorias().then(res => {
-      this.categorias = res;
-      this.action = res.length > 0 ? res[1]._id : '';
-      this.getClientes(this.action);
-      // this.loading.dismiss();
+      if(res.length > 0 ){
+        this.categorias = res.sort((a,b)=> a.order - b.order);
+
+        this.action = this.categorias[0].nombre;
+        this.itemSelected = this.action;
+        this.getClientes(this.categorias[0]._id);
+      }
     }, err => {
       this.loading.dismiss();
     })
@@ -48,9 +53,11 @@ export class HomePage {
   }
 
   getEventos(id){
+    this.showLoading();
     this.clienteProvider.getEventos(id).then(res=>{
+      this.loading.dismiss();
       this.eventos = res;
-    }).catch(err=> console.log(err) )
+    }).catch(err=> this.loading.dismiss() )
   }
 
   getSliders() {
@@ -60,12 +67,16 @@ export class HomePage {
   }
 
   onChangeMenu(event){
-    if(this.action == '5a725ea67a2b4a070e3a209e'){
-      this.getEventos('5a725ea67a2b4a070e3a209e');
-    }else{
-      this.getClientes(this.action);  
+    const categoryList: any = this.categorias;
+    const category: any = categoryList.filter(item => item.nombre === event).shift();
+
+    if(category.evento){
+      this.getEventos(category._id);
+    } else {
+      this.itemSelected = event;
+      this.showLoading();
+      this.getClientes(category._id);
     }
-    
   }
 
   showLoading(){

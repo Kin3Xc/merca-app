@@ -3,5 +3,5 @@ export interface IAppConfig {
 }
 export const AppConfig: IAppConfig = {
     API_URL: "http://142.93.246.187/api/v1" //production
-    // API_URL: 'http://192.168.1.4:5434/api/v1'   // development
+    // API_URL: 'http://192.168.1.2:5434/api/v1'   // development
 };

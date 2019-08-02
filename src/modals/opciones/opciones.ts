@@ -29,9 +29,10 @@ export class ModalOpciones {
   public direccion: string;
   public comentarios: string;
 
+  cliente: any = [];
   carrito: any = [];
   subtotal: number;
-  domicilio: number;
+  domicilio: any;
   total: number;
 
   constructor(
@@ -51,19 +52,21 @@ export class ModalOpciones {
     this.view.dismiss();
   }
 
-  getLocalCarrito() {
-    this.total = 0;
-    this.domicilio = 1000;
+  getLocalCarrito(){
     this.subtotal = 0;
+    this.total = 0;
 
-    let carrito: any = JSON.parse(localStorage.getItem("carritoPideYa"));
+    let carrito: any = JSON.parse(localStorage.getItem('carritoPideYa'));
+    if(carrito && carrito.productos){
+      this.carrito = carrito.productos;
+      this.cliente = carrito.comercio;
 
-    if (carrito) {
-      this.carrito = carrito;
-      carrito.forEach(item => {
-        this.subtotal += parseInt(item.precio);
+      this.domicilio = this.cliente.domicilio || 0;
+
+      carrito.productos.forEach(item=>{
+        this.subtotal += parseInt(item.precio) * item.cantidad;
       });
-      this.total = this.subtotal + this.domicilio;
+      this.total = this.subtotal + parseInt(this.domicilio);
     }
   }
 
@@ -78,7 +81,7 @@ export class ModalOpciones {
         total: this.total,
         subtotal: this.subtotal,
         domicilio: this.domicilio,
-        proveedor: this.carrito[0].proveedor._id,
+        proveedor: this.cliente._id,
         estado: "Sin aceptar"
       };
       this.send(pedido);
@@ -117,13 +120,6 @@ export class ModalOpciones {
       res => {
         localStorage.removeItem("carritoPideYa");
         loading.dismiss();
-        /*  let toast = this.toast.create({
-        message: 'Hemos recibido tu pedido, pronto nos comunicaremos para la entrega',
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present(); */
-        console.log(res);
         this.socket_io.sendPedido(res);
         this.goStatus();
       },

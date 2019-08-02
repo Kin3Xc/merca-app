@@ -17,8 +17,14 @@ export class ProvidersProductosProvider {
   constructor(public http: Http) {
   }
 
-  getProductos(id){
-  	return this.http.get(`${AppConfig.API_URL}/producto/proveedor/${id}`)
+  getProductos(id, section){
+  	return this.http.get(`${AppConfig.API_URL}/producto/proveedor/${id}/section/${section}`)
+	  .map(res => res.json())
+	  .toPromise();
+  }
+
+  getSections(proveedor){
+    return this.http.get(`${AppConfig.API_URL}/section/proveedor/${proveedor}`)
 	  .map(res => res.json())
 	  .toPromise();
   }

@@ -12,21 +12,13 @@
 </ion-header>
 
 <ion-content class="page-home">
-
-    <ion-segment (ionChange)="onChangeMenu()" [(ngModel)]="action">
-        <ion-segment-button value="5a725e677a2b4a070e3a209d">
-            Comida
-        </ion-segment-button>
-        <ion-segment-button value="5a725d0e7a2b4a070e3a209c">
-            Productos
-        </ion-segment-button>
-        <ion-segment-button value="5c7ea4bbfb6fc072012e73e0">
-            Licores
-        </ion-segment-button>
-        <ion-segment-button value="5a725ea67a2b4a070e3a209e">
-            Eventos
-        </ion-segment-button>
-    </ion-segment>
+    <ng-container *ngIf="categorias && categorias.length > 0">
+        <ion-segment (ionChange)="onChangeMenu($event.value)" [(ngModel)]="action">
+            <ion-segment-button *ngFor="let category of categorias" [value]="category.nombre">
+                {{ category.titulo }}
+            </ion-segment-button>
+        </ion-segment>
+    </ng-container>
 
     <!-- slider for promotions -->
     <ng-container *ngIf="sliders && sliders.length > 0">
@@ -42,182 +34,68 @@
     <div [ngSwitch]="action">
 
         <!-- PRODUCTOS -->
-        <ion-list *ngSwitchCase="'5a725d0e7a2b4a070e3a209c'">
-            <ion-item *ngIf="clientes.length < 1">No hay productos disponibles</ion-item>
-            <div class="cafe productos" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
+        <ion-list *ngSwitchCase="itemSelected">
 
-                <ion-item>
-                    <ion-thumbnail item-start>
-                        <img src="{{cliente.avatar}}">
-                    </ion-thumbnail>
-                    <h2>{{cliente.nombre}} <span class="price"> <ion-icon name="bicycle"></ion-icon> ${{cliente.domicilio}}</span></h2>
-                    <p>{{cliente.descripcion}}</p>
-                    <!-- <button ion-button clear item-end>$5k</button> -->
-                    <p class="star">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                    </p>
-                    <p>
-                        <ion-icon name="chatboxes"></ion-icon> <!-- 120 -->
-                        <span class="time"><ion-icon name="alarm"></ion-icon> {{cliente.tiempoEntrega}} min</span>
-                    </p>
+            <ion-item *ngIf="!clientes.length">No hay productos disponibles</ion-item>
 
-                </ion-item>
-                <ion-row>
+            <ng-container *ngIf="clientes && clientes.length > 0">
+                <div class="cafe productos" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
 
+                    <ion-item>
+                        <ion-thumbnail item-start>
+                            <img src="{{cliente.avatar}}">
+                        </ion-thumbnail>
+                        <h2>{{cliente.nombre}} <span class="price"> <ion-icon name="bicycle"></ion-icon> ${{cliente.domicilio}}</span></h2>
+                        <p>{{cliente.descripcion}}</p>
+                        <!-- <button ion-button clear item-end>$5k</button> -->
+                        <p class="star">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                        </p>
+                        <p>
+                            <ion-icon name="chatboxes"></ion-icon> <!-- 120 -->
+                            <span class="time"><ion-icon name="alarm"></ion-icon> {{cliente.tiempoEntrega}} min</span>
+                        </p>
 
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="bicycle"></ion-icon>
-                        </ion-item>
-                    </ion-col>
-
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="cart"></ion-icon>
-                        </ion-item>
-                    </ion-col>
-
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="cash"></ion-icon>
-                        </ion-item>
-                    </ion-col>
-
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="pin"></ion-icon>
-                        </ion-item>
-                    </ion-col>
-
-                </ion-row>
-
-            </div>
-
-        </ion-list>
-
-        <!-- LICORES -->
-        <ion-list *ngSwitchCase="'5c7ea4bbfb6fc072012e73e0'">
-            <ion-item *ngIf="clientes.length < 1">No hay productos disponibles</ion-item>
-            <div class="cafe licores" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
-
-                <ion-item>
-                    <ion-thumbnail item-start>
-                        <img src="{{cliente.avatar}}">
-                    </ion-thumbnail>
-                    <h2>{{cliente.nombre}} <span class="price"> <ion-icon name="bicycle"></ion-icon> ${{cliente.domicilio}}</span></h2>
-                    <p>{{cliente.descripcion}}</p>
-                    <!-- <button ion-button clear item-end>$5k</button> -->
-                    <p class="star">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                    </p>
-                    <p>
-                        <ion-icon name="chatboxes"></ion-icon> <!-- 120 -->
-                        <span class="time"><ion-icon name="alarm"></ion-icon> {{cliente.tiempoEntrega}} min</span>
-                    </p>
-
-                </ion-item>
-                <ion-row>
+                    </ion-item>
+                    <ion-row>
 
 
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="bicycle"></ion-icon>
-                        </ion-item>
-                    </ion-col>
+                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                            <ion-item>
+                                <ion-icon name="bicycle"></ion-icon>
+                            </ion-item>
+                        </ion-col>
 
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="cart"></ion-icon>
-                        </ion-item>
-                    </ion-col>
+                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                            <ion-item>
+                                <ion-icon name="cart"></ion-icon>
+                            </ion-item>
+                        </ion-col>
 
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="cash"></ion-icon>
-                        </ion-item>
-                    </ion-col>
+                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                            <ion-item>
+                                <ion-icon name="cash"></ion-icon>
+                            </ion-item>
+                        </ion-col>
 
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="pin"></ion-icon>
-                        </ion-item>
-                    </ion-col>
+                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                            <ion-item>
+                                <ion-icon name="pin"></ion-icon>
+                            </ion-item>
+                        </ion-col>
 
-                </ion-row>
+                    </ion-row>
 
-            </div>
+                </div>
+            </ng-container>
 
         </ion-list>
-
-
-
-
-
-        <!-- RESTAURANTES -->
-        <ion-list *ngSwitchCase="'5a725e677a2b4a070e3a209d'">
-
-            <div class="cafe restaurantes" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
-
-                <ion-item>
-                    <ion-thumbnail item-start>
-                        <img src="{{ cliente.avatar }}">
-                    </ion-thumbnail>
-                    <h2>{{ cliente.nombre }} <span class="price"> <ion-icon name="bicycle"></ion-icon> ${{cliente.domicilio }}</span></h2>
-                    <p>{{ cliente.descripcion }}</p>
-                    <!-- <button ion-button clear item-end>$5k</button> -->
-                    <p class="star">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                    </p>
-                    <p>
-                        <ion-icon name="chatboxes"></ion-icon> <!-- 30 -->
-                        <span class="time"><ion-icon name="alarm"></ion-icon> {{cliente.tiempoEntrega}} min</span>
-                    </p>
-
-                </ion-item>
-                <ion-row>
-
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="bicycle"></ion-icon>
-                        </ion-item>
-                    </ion-col>
-
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="restaurant"></ion-icon>
-                        </ion-item>
-                    </ion-col>
-
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="cash"></ion-icon>
-                        </ion-item>
-                    </ion-col>
-
-                    <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                        <ion-item>
-                            <ion-icon name="pin"></ion-icon>
-                        </ion-item>
-                    </ion-col>
-
-                </ion-row>
-            </div>
-
-        </ion-list>
-        <!-- FIN RESTAURANTES -->
-
 
         <!-- EVENTOS -->
-        <div class="eventos" *ngSwitchCase="'5a725ea67a2b4a070e3a209e'">
+        <div class="eventos" *ngSwitchCase="'eventos'">
             <ion-list *ngFor="let evento of eventos">
 
                 <ion-list-header>{{ evento.fecha | date:'dd-MMM-yyyy'}}</ion-list-header>
