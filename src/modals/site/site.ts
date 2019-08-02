@@ -181,15 +181,12 @@ export class ModalSite {
   }
 
   openPageCarrito(){
-    // this.closeModal();
     this.NavCtrl.push(CarritoPage);
   }
 
   onChangeMenu(event: any){
-    
-    if(event.name !== 'comentarios'){
-      this.itemSelected = event;
-    } else {
+    this.itemSelected = event;
+    if(event !== 'comentarios'){
       const menu: any = this.siteMenu;
       const itemMenu = menu.filter(item => item.name === event).shift();
       this.showLoading();

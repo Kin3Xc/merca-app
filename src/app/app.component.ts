@@ -4,6 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+// import { FirebaseService } from '../services/firebase';
+import { DeviceService } from '../services/devices';
 
 // Implementamos la librería de notificaciones Push.
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
@@ -15,10 +17,11 @@ export class MyApp {
   rootPage:any = TabsPage;
 
   constructor(
-    platform: Platform,
+    private platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     private alertCtrl: AlertController,
+    private device: DeviceService,
     private push: Push) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -41,23 +44,33 @@ export class MyApp {
   pushSetup(){
     const options: PushOptions = {
       android: {
-          // Añadimos el sender ID para Android.
-          senderID: '5937485844'
+        // Añadimos el sender ID para Android.
+        senderID: '5937485844'
       },
       ios: {
-          alert: 'true',
-          badge: true,
-          sound: 'false'
+        alert: 'true',
+        badge: true,
+        sound: 'false'
       }
    };
    
    const pushObject: PushObject = this.push.init(options);
 
    pushObject.on('notification').subscribe((notification: any) => {
-    console.log('Received a notification', notification);
+    // console.log('Received a notification', notification);
     this.presentAlert(notification);
    });
-   pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+   3
+   pushObject.on('registration').subscribe((registration: any) => {
+    // console.log('Device registered', registration);
+    this.device.saveToken({
+      uid: registration.registrationId,
+      platform: 'android',//this.platform.platforms,
+      token: registration,
+      type: 'user'
+    }).then(res => {});
+   });
+
    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
 
  }
