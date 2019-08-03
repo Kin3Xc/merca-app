@@ -4,8 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from "ionic-angular";
 import { MyApp } from "./app.component";
 import { HttpModule } from "@angular/http";
 
-//import { Geolocation } from "@ionic-native/geolocation";
-
 // import pages
 import { HomePage } from "../pages/home/home";
 import { CarritoPage } from "../pages/carrito/carrito";
@@ -22,11 +20,8 @@ import { ProvidersProductosProvider } from "../providers/providers-productos/pro
 import { CategoriasProvider } from "../providers/categorias/categorias";
 import { PedidoProvider } from "../providers/pedido/pedido";
 
-import { SocketIO } from "../providers/socket";
-
 import { Push } from '@ionic-native/push';
 
-import { FirebaseService } from '../services/firebase';
 import { DeviceService } from '../services/devices';
 
 @NgModule({
@@ -44,15 +39,12 @@ import { DeviceService } from '../services/devices';
   providers: [
     StatusBar,
     SplashScreen,
-    //Geolocation,
-    FirebaseService,
     DeviceService,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ProvidersClientesProvider,
     ProvidersProductosProvider,
     CategoriasProvider,
     PedidoProvider,
-    SocketIO,
     Push
   ]
 })

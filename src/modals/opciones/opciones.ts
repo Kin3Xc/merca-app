@@ -8,7 +8,6 @@ import {
 } from "ionic-angular";
 import { PedidoProvider } from "../../providers/pedido/pedido";
 import { StatusPage } from "../../pages/status/status";
-import { SocketIO } from "../../providers/socket";
 /**
  * Generated class for the ModalCliente page.
  *
@@ -40,8 +39,7 @@ export class ModalOpciones {
     private toast: ToastController,
     private _pedidos: PedidoProvider,
     private loadingCtrl: LoadingController,
-    private nav: NavController,
-    private socket_io: SocketIO
+    private nav: NavController
   ) {}
 
   ionViewDidEnter() {
@@ -120,7 +118,6 @@ export class ModalOpciones {
       res => {
         localStorage.removeItem("carritoPideYa");
         loading.dismiss();
-        this.socket_io.sendPedido(res);
         this.goStatus();
       },
       err => {

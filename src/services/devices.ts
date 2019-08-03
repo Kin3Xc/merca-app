@@ -12,7 +12,6 @@ export class DeviceService{
     }
 
     public saveToken(device) {
-        console.log(device)
         return this.http.post(`${AppConfig.API_URL}/device`, device)
         .map(res => res.json())
         .toPromise();

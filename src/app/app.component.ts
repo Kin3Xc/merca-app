@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-// import { FirebaseService } from '../services/firebase';
 import { DeviceService } from '../services/devices';
 
 // Implementamos la librería de notificaciones Push.
@@ -57,12 +56,10 @@ export class MyApp {
    const pushObject: PushObject = this.push.init(options);
 
    pushObject.on('notification').subscribe((notification: any) => {
-    // console.log('Received a notification', notification);
     this.presentAlert(notification);
    });
    3
    pushObject.on('registration').subscribe((registration: any) => {
-    // console.log('Device registered', registration);
     this.device.saveToken({
       uid: registration.registrationId,
       platform: 'android',//this.platform.platforms,

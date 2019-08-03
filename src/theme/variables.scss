@@ -106,3 +106,17 @@ $colors: (
   width: 180px;
   height: auto;
 }
+ion-segment {
+  justify-content: space-between !important;
+  overflow: auto !important;
+
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+  }
+
+  ion-segment-button.segment-button {
+    flex: 1 0 100px !important;
+  }
+}
