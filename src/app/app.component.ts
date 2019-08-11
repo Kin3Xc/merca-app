@@ -58,8 +58,9 @@ export class MyApp {
    pushObject.on('notification').subscribe((notification: any) => {
     this.presentAlert(notification);
    });
-   3
+   
    pushObject.on('registration').subscribe((registration: any) => {
+    localStorage.setItem('deviceToken', registration.registrationId);
     this.device.saveToken({
       uid: registration.registrationId,
       platform: 'android',//this.platform.platforms,

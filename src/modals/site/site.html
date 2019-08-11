@@ -14,8 +14,15 @@
         <h3>{{cliente.nombre}}</h3>
         <div class="info">
           <p>Telefono: {{cliente.telefono}}</p>
-          <p>Dirección: {{cliente.direccion}}</p>
-
+          <p>{{cliente.direccion}}</p>
+          <ng-container *ngIf="cliente.open || ever">
+            <p>Horario: {{ cliente?.open }} - {{ cliente?.close }}</p>
+            <div class="horario">
+              <p *ngIf="abierto && !ever" class="open-site">Abierto</p>
+              <p *ngIf="!abierto && !ever" class="close-site">Cerrado</p>
+              <p *ngIf="ever" class="open-site">Siempre abierto</p>
+            </div>
+          </ng-container>
           <p class="star">
             <ion-icon name="star"></ion-icon>
             <ion-icon name="star"></ion-icon>
@@ -23,7 +30,7 @@
             <ion-icon name="star"></ion-icon>
           </p>
           <!-- <p>ABIERTO</p> -->
-          <a href="tel:+57{{cliente.telefono}}" ion-button icon-left color="verde" small outline>
+          <a *ngIf="abierto || ever" href="tel:+57{{cliente.telefono}}" ion-button icon-left color="verde" small outline>
             <ion-icon name="call"></ion-icon>
             Llamar
           </a>
@@ -57,7 +64,8 @@
             <h2 color="gris">{{ producto.nombre }}</h2>
             <p class="description">{{ producto.descripcion }}</p>
             <p>${{ producto.precio }}</p>
-            <button ion-button (click)="addProducto(producto)" outline>Agregar al pedido</button>
+            <button *ngIf="abierto || ever" ion-button (click)="addProducto(producto)" outline>Agregar al pedido</button>
+            <button class="close-btn" *ngIf="!abierto" ion-button outline>No hay servicio</button>
           </ion-item>
         </ng-container>
 

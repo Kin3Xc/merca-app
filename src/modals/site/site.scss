@@ -97,7 +97,20 @@
     .first-menu{
         background-color:white;
     }
-
+    .horario{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .open-site{
+        color: #42B72A !important;
+    }
+    .close-site{
+        color: #f53d3d !important;
+    }
+    .close-btn{
+        color:#f53d3d !important;
+        border-color: #f53d3d !important;
+    }
 }
 ion-thumbnail img{
     width: 115px !important;

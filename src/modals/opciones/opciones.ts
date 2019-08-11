@@ -26,6 +26,7 @@ export class ModalOpciones {
   public name: string;
   public telefono: string;
   public direccion: string;
+  public barrio: string;
   public comentarios: string;
 
   cliente: any = [];
@@ -69,18 +70,21 @@ export class ModalOpciones {
   }
 
   sendPedido() {
+    const device = localStorage.getItem('deviceToken');
     if (this.name && this.direccion && this.telefono) {
       const pedido = {
         name: this.name,
         telefono: this.telefono,
         direccion: this.direccion,
+        barrio: this.barrio,
         comentarios: this.comentarios,
         productos: this.carrito,
         total: this.total,
         subtotal: this.subtotal,
         domicilio: this.domicilio,
         proveedor: this.cliente._id,
-        estado: "Sin aceptar"
+        estado: "Sin aceptar",
+        device
       };
       this.send(pedido);
       this.saveLocalPedido(pedido);

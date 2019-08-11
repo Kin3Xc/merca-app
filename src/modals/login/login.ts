@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, ViewController } from 'ionic-angular';
-
-// import { AngularFireAuth } from 'angularfire2/auth';
-// import firebase from 'firebase';
-
-
 /**
  * Generated class for the ModalLogin page.
  *
@@ -23,23 +18,6 @@ export class ModalLogin {
 
   constructor( private view: ViewController) {
 
-    // afAuth.authState.subscribe(user => {
-    //   if (!user) {
-    //     this.userProfile = null;        
-    //     return;
-    //   }
-    //   this.userProfile = user;      
-    // });
-    
-
-    // firebase comment
-    /* firebase.auth().onAuthStateChanged( user => {
-      if (user) {
-        this.userProfile = user;
-      } else {
-      }
-    }); */
-
   }
 
   ionViewWillLoad() {
@@ -48,31 +26,11 @@ export class ModalLogin {
 
   // signin with google
   signInWithGoogle(){
-    // firebase commented
-   /*  const provider = new firebase.auth.GoogleAuthProvider();
-
-    firebase.auth().signInWithRedirect(provider).then( () => {
-      firebase.auth().getRedirectResult().then( result => {
-        if (result.credential) {
-          // This gives you a Google Access Token.
-          // You can use it to access the Google API.
-          // var token = result.credential.accessToken;
-          // The signed-in user info.
-          this.user = result.user;
-        }
-      }).catch(function(error) {
-        // Handle Errors here.
-      });
-    }); */
   }
 
 
   // signin with facebook
   signInWithFacebook() {
-    // firebase commented
-    /* this.afAuth.auth
-      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then(res => {}); */
   }
 
 
@@ -82,7 +40,7 @@ export class ModalLogin {
 
   // signout
   signOut() {
-    // this.afAuth.auth.signOut();
+
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController } from 'ionic-angular';
+import { PedidoProvider } from '../../providers/pedido/pedido';
+
 
 @Component({
   selector: 'page-mas',
@@ -8,14 +10,33 @@ import { NavController, ModalController } from 'ionic-angular';
 export class MasPage {
   public items:any;
   public pedidos: any = [];
-  constructor(public navCtrl: NavController, public modal: ModalController) {
+  public loading:any;
+
+  constructor(
+    public navCtrl: NavController,
+    public modal: ModalController,
+    private _pedidos: PedidoProvider,
+    private loadingCtrl: LoadingController) {
   }
 
   ionViewDidEnter() {
-    const pedidos = localStorage.getItem('pedidosList');
-    if(pedidos) {
-      this.pedidos = JSON.parse(pedidos);
+    this.showLoading()
+    const token = localStorage.getItem('deviceToken');
+    if(token){
+      this._pedidos.getPedidosByToken(token).then(res => {
+        this.pedidos = res;
+        this.loading.dismiss();
+      }, err => this.loading.dismiss() );
     }
+  }
+
+  showLoading(){
+    this.loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: 'Cargando historial de pedidos...'
+    });
+  
+    this.loading.present();
   }
 
   openModalMas(item){

@@ -29,9 +29,15 @@
   </ion-item>
 
   <ion-item>
-    <ion-label floating>Comentarios al pedido</ion-label>
-    <ion-textarea [(ngModel)]="comentarios"></ion-textarea>
+    <ion-label floating>Barrio</ion-label>
+    <ion-input [(ngModel)]="barrio" type="text"></ion-input>
   </ion-item>
+
+  <ion-item>
+    <ion-label floating>Comentarios al pedido </ion-label>
+    <ion-textarea rows="5" cols="33" [(ngModel)]="comentarios"></ion-textarea>
+  </ion-item>
+  <span class="comentario">* Aquí puedes darnos indicaciones de como llegar a tu direccion, tambien puedes escribirnos como quieres tu producto o si quieres algo adicional</span>
 
 </ion-content>
 

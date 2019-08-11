@@ -23,4 +23,10 @@ export class PedidoProvider {
 	  .toPromise();
   }
 
+  getPedidosByToken(token){
+  	return this.http.get(`${AppConfig.API_URL}/pedido/token/${token}`)
+	  .map(res => res.json())
+	  .toPromise();
+  }
+
 }

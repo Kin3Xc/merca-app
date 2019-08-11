@@ -13,6 +13,8 @@ import { ProvidersProductosProvider } from '../../providers/providers-productos/
 import { ProvidersClientesProvider } from '../../providers/providers-clientes/providers-clientes';
 import { CarritoPage } from '../../pages/carrito/carrito';
 
+import * as moment from 'moment';
+
 /**
  * Generated class for the ModalSite page.
  *
@@ -35,6 +37,8 @@ export class ModalSite {
   public siteMenu = [];
   public itemSelected: string;
   public loading: any;
+  public abierto = true;
+  public ever = false;
 
 
   constructor(
@@ -53,9 +57,39 @@ export class ModalSite {
 
   ionViewWillLoad() {
     this.cliente = this.navParams.get('cliente');
+    if(!this.cliente.ever && this.cliente.open && this.cliente.close){
+      this.resolveHorario(this.cliente);
+    } else {
+      if(this.cliente.ever){
+        this.ever = true;
+      } else {
+        this.ever = false;
+      }
+    }
     this.getSections(this.cliente._id);
     this.getNumProductos();
     this.getComentarios(this.cliente);
+  }
+
+  resolveHorario(cliente){
+    const result = this.isNowBetweenTime(cliente.open, cliente.close); 
+    if(result){
+      this.abierto = true;
+    } else {
+      this.abierto = false;
+    }
+  }
+
+  isNowBetweenTime(startTime, endTime){
+    // Creating moment objects for the current day at the given time
+    var startMom = moment(startTime, 'HH:mm');
+    var endMom   = moment(endTime, 'HH:mm');
+    
+    if ( startMom.isAfter(endMom) ){
+      endMom.add(1, 'd');
+    }
+    
+    return moment().isBetween(startMom, endMom);
   }
 
   showLoading(){
@@ -145,7 +179,7 @@ export class ModalSite {
   toast(message){
     let toast = this.Toast.create({
       message: message,
-      duration: 1000,
+      duration: 2000,
       position: 'top'
     });
     toast.present();
