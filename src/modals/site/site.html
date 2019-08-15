@@ -64,7 +64,7 @@
             <h2 color="gris">{{ producto.nombre }}</h2>
             <p class="description">{{ producto.descripcion }}</p>
             <p>${{ producto.precio }}</p>
-            <button *ngIf="abierto || ever" ion-button (click)="addProducto(producto)" outline>Agregar al pedido</button>
+            <button *ngIf="abierto || ever" ion-button (click)="prepareOrder(producto)" outline>Agregar al pedido</button>
             <button class="close-btn" *ngIf="!abierto" ion-button outline>No hay servicio</button>
           </ion-item>
         </ng-container>

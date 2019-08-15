@@ -141,38 +141,67 @@ export class ModalSite {
       this.comentarios = res;
     }).catch(err=> {} )
   }
+  
+  prepareOrder(producto){
+    this.validateLocalOrder(producto);
+  }
 
   addProducto(producto){
+    let pushProduct = true;
     producto.cantidad = 1;
-    const confirm = this.alertCtrl.create({
-      title: 'Confirmación',
-      message: `Seguro que desea algregar el producto '${producto.nombre}' a su pedido? `,
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Agregar',
-          handler: () => {
-            let carrito = JSON.parse(localStorage.getItem('carritoPideYa'));
-            if(carrito && carrito.productos){
-              carrito.productos.push(producto);
-              localStorage.setItem('carritoPideYa', JSON.stringify(carrito));
-            }else{
-              localStorage.setItem('carritoPideYa', JSON.stringify({
-                comercio: this.cliente,
-                productos: [producto]
-              }));  
-            }
-            this.getNumProductos();
-            this.toast('Se agregó el producto a su pedido');
-          }
+    let carrito = JSON.parse(localStorage.getItem('carritoPideYa'));
+    if(carrito && carrito.productos){
+      carrito.productos.forEach((item, index) => {
+        if(item._id === producto._id){
+          carrito.productos[index].cantidad += 1;
+          pushProduct = false;
         }
-      ]
-    });
-    confirm.present();
+      });
+      if(pushProduct){
+        carrito.productos.push(producto);
+        localStorage.setItem('carritoPideYa', JSON.stringify(carrito));
+      } else {
+        localStorage.setItem('carritoPideYa', JSON.stringify(carrito));
+      }
+    } else {
+      localStorage.setItem('carritoPideYa', JSON.stringify({
+        comercio: this.cliente,
+        productos: [producto]
+      }));  
+    }
+    this.getNumProductos();
+    this.toast('Se agregó el producto a su pedido');
+  }
+
+  validateLocalOrder(producto){
+    let carrito = JSON.parse(localStorage.getItem('carritoPideYa'));
+    if(carrito){
+      if(carrito.comercio._id !== producto.proveedor._id){
+        const confirm = this.alertCtrl.create({
+          title: 'Información',
+          message: `Ya tienes productos de otro local en el carrito, solo puedes pedir de un solo sitio a la vez`,
+          buttons: [
+            {
+              text: 'Cancelar',
+              handler: () => {
+              }
+            },
+            {
+              text: 'Vaciar carrito y continuar',
+              handler: () => {
+                localStorage.removeItem('carritoPideYa');
+                this.addProducto(producto);
+              }
+            }
+          ]
+        });
+        confirm.present();
+      } else {
+        this.addProducto(producto);
+      }
+    } else {
+      this.addProducto(producto);
+    }
   }
 
 
