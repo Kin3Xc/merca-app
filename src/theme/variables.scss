@@ -98,9 +98,9 @@ $colors: (
 @import "roboto";
 @import "noto-sans";
 
-.header{
+/* .header{
   text-align: center;
-}
+} */
 .logo{
   // margin-top: 8px;
   width: 180px;
@@ -118,5 +118,16 @@ ion-segment {
 
   ion-segment-button.segment-button {
     flex: 1 0 100px !important;
+  }
+  .segment-button{
+    border-style: none !important;
+  }
+  .segment-button:first-of-type{
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+  }
+  .segment-button:last-of-type{
+    border-bottom-right-radius: 4px !important;
+    border-top-right-radius: 4px !important;
   }
 }
