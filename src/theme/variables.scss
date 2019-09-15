@@ -98,13 +98,14 @@ $colors: (
 @import "roboto";
 @import "noto-sans";
 
-.header{
-  text-align: center;
-}
+// .header{
+//  // text-align: center;
+// }
 .logo{
   // margin-top: 8px;
-  width: 180px;
+  width: 140px;
   height: auto;
+  margin-top: 4px;
 }
 ion-segment {
   justify-content: space-between !important;
@@ -119,4 +120,8 @@ ion-segment {
   ion-segment-button.segment-button {
     flex: 1 0 100px !important;
   }
+}
+.segment-ios .segment-button{
+  border-radius: 0 !important;
+  border-style: none !important;
 }

@@ -47,27 +47,36 @@ export class MyApp {
         senderID: '5937485844'
       },
       ios: {
-        alert: 'true',
+        senderID: '5937485844',
+    /*     alert: true,
         badge: true,
-        sound: 'false'
+        sound: true,
+        gcmSandbox: false */
+        alert: 'true',
+        sound: 'true',
+        gcmSandbox: 'true',
+        badge: 'true',
+        clearBadge: 'true'
       }
    };
    
    const pushObject: PushObject = this.push.init(options);
 
    pushObject.on('notification').subscribe((notification: any) => {
+     console.log('NOTIFICATION: ', notification);
     this.presentAlert(notification);
    });
    
    pushObject.on('registration').subscribe((registration: any) => {
     localStorage.setItem('deviceToken', registration.registrationId);
+    console.log('TOKEN HERE: ', registration.registrationId),
     this.device.saveToken({
       uid: registration.registrationId,
-      platform: 'android',//this.platform.platforms,
+      platform: 'ios',//this.platform.platforms,
       token: registration,
       type: 'user'
     }).then(res => {});
-   });
+   }, error =>  console.log('ERROR: ', error));
 
    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
 

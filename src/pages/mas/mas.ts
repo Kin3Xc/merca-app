@@ -27,6 +27,8 @@ export class MasPage {
         this.pedidos = res;
         this.loading.dismiss();
       }, err => this.loading.dismiss() );
+    } else {
+      this.loading.dismiss();
     }
   }
 

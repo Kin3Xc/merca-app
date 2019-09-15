@@ -12,20 +12,20 @@
 <!-- page favoritos -->
 <ion-content padding class="page-perfil">
 
-	  <h2>Historial de pedidos</h2>
+	<h2>Historial de pedidos</h2>
+	<p class="sin-pedido" *ngIf="!pedidos.length">No tienes pedidos aún, empieza a pedir ya!</p>
+	<div class="pedido-container" *ngIf="pedidos && pedidos.length > 0">
 
-	  <div class="pedido-container" *ngIf="pedidos && pedidos.length > 0">
+		<div class="detalle-pedido" *ngFor="let pedido of pedidos">
+			<h3>{{ pedido?.name }}
+			</h3>
+			<hr>
+			<p>Direccion: <span>{{ pedido?.direccion }}</span></p>
+			<p>Teléfono: <span>{{ pedido?.telefono }}</span></p>
+			<!-- <p>Fecha: <span>{{ pedido?.created }}</span></p> -->
+			<p class="total">Total: <span>${{ pedido?.total }}</span></p>
+		</div>
 
-				<div class="detalle-pedido" *ngFor="let pedido of pedidos">
-					<h3>{{ pedido?.name }}
-					</h3>
-					<hr>
-					<p>Direccion: <span>{{ pedido?.direccion }}</span></p>
-					<p>Teléfono: <span>{{ pedido?.telefono }}</span></p>
-					<!-- <p>Fecha: <span>{{ pedido?.created }}</span></p> -->
-					<p class="total">Total: <span>${{ pedido?.total }}</span></p>
-				</div>
-		
-			</div>
+	</div>
 
-	 </ion-content>
+</ion-content>
