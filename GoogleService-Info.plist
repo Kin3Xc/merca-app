@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>5937485844-ge17br3c1nr7vgee9stj2uiq2oejenq5.apps.googleusercontent.com</string>
+	<string>5937485844-m2qslfla0efsel262iggacbe04kdrc25.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.5937485844-ge17br3c1nr7vgee9stj2uiq2oejenq5</string>
+	<string>com.googleusercontent.apps.5937485844-m2qslfla0efsel262iggacbe04kdrc25</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBpw1A2motQWuzLQVrpJoupt8tsPhIUsX8</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>co.elkinurango.merca.ios</string>
+	<string>co.elkinurango.pideexpress</string>
 	<key>PROJECT_ID</key>
 	<string>merca-bf260</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:5937485844:ios:e84e2008bd57dc19a12f01</string>
+	<string>1:5937485844:ios:2365f13050b300e1a12f01</string>
 	<key>DATABASE_URL</key>
 	<string>https://merca-bf260.firebaseio.com</string>
 </dict>

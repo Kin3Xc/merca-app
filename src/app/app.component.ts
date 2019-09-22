@@ -55,7 +55,7 @@ export class MyApp {
         alert: 'true',
         sound: 'true',
         gcmSandbox: 'true',
-        badge: 'true',
+        badge: true,
         clearBadge: 'true'
       }
    };
@@ -69,7 +69,7 @@ export class MyApp {
    
    pushObject.on('registration').subscribe((registration: any) => {
     localStorage.setItem('deviceToken', registration.registrationId);
-    console.log('TOKEN HERE: ', registration.registrationId),
+    console.log('TOKEN HERE NOW: ', registration.registrationId),
     this.device.saveToken({
       uid: registration.registrationId,
       platform: 'ios',//this.platform.platforms,

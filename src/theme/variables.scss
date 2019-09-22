@@ -125,3 +125,6 @@ ion-segment {
   border-radius: 0 !important;
   border-style: none !important;
 }
+ion-app.platform-ios12 ion-content { 
+  pointer-events: auto; /*fix scroll lock on ios12.2*/ 
+}
