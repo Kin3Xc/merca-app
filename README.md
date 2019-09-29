@@ -29,8 +29,8 @@ $ ionic cordova build android --prod --release -- -- --minSdkVersion=19
 $ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore release-key-pideExpress.keystore app-release-unsigned.apk pideExpress
 $ zipalign -v 4 app-release-unsigned.apk pideExpress.apk
 LOCAL
-$ cd /Users/elkinurango/Library/Android/sdk/build-tools/28.0.3
-./zipalign -v 4 /Users/elkinurango/Desktop/pidexpress/merca-app/app-release-unsigned.apk /Users/elkinurango/Desktop/pidexpress/merca-app/pideExpress.apk
+$ cd /Users/elkinurango/Library/Android/sdk/build-tools/29.0.2
+./zipalign -v 4 /Users/elkinurango/Desktop/pideexpress/app-pideexpress/app-release-unsigned.apk /Users/elkinurango/Desktop/pideexpress/app-pideexpress/pideExpress.apk
 ```
 
 Substitute ios for android if not on a Mac.
