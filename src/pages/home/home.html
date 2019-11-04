@@ -1,119 +1,137 @@
 <!--  page home -->
 <ion-header>
     <ion-navbar class="header">
-        <!-- <h2 class="title">PideYa! - Encuentra lo que quieres</h2> -->
-        <img class="logo" src="assets/logo-rapdexpress.png" alt="">
-        <ion-buttons end>
-            <button ion-button (click)="openModalLogin()">
-                <ion-icon name="happy"></ion-icon>
-            </button>
-        </ion-buttons>
+        <img class="logo" src="assets/logo-white.png" alt="logo">
+        <ion-searchbar placeholder="¿Qué quieres pedir hoy?" [formControl]="search"></ion-searchbar>
     </ion-navbar>
 </ion-header>
 
 <ion-content class="page-home">
-    <ng-container *ngIf="categorias && categorias.length > 0">
-        <ion-segment (ionChange)="onChangeMenu($event.value)" [(ngModel)]="action">
-            <ion-segment-button *ngFor="let category of categorias" [value]="category.nombre">
-                {{ category.titulo }}
-            </ion-segment-button>
-        </ion-segment>
-    </ng-container>
+    <!-- Lista de Proveedores -->
+    <ng-container *ngIf="productos && productos.length < 1">
+        <ng-container *ngIf="categorias && categorias.length > 0">
+            <ion-segment (ionChange)="onChangeMenu($event.value)" [(ngModel)]="action">
+                <ion-segment-button *ngFor="let category of categorias" [value]="category.nombre">
+                    {{ category.titulo }}
+                </ion-segment-button>
+            </ion-segment>
+        </ng-container>
 
-    <!-- slider for promotions -->
-    <ng-container *ngIf="sliders && sliders.length > 0">
-      <ion-slides autoplay="5000" loop="true" speed="500" pager="false">
+        <!-- slider for promotions -->
+        <ng-container *ngIf="sliders && sliders.length > 0">
+        <ion-slides autoplay="5000" loop="true" speed="500" pager="false">
 
-          <ion-slide *ngFor="let slider of sliders">
-            <img [src]="slider.image" />
-          </ion-slide>
-        
-      </ion-slides>
-    </ng-container>
+            <ion-slide *ngFor="let slider of sliders">
+                <img [src]="slider.image" />
+            </ion-slide>
+            
+        </ion-slides>
+        </ng-container>
 
-    <div [ngSwitch]="action">
+        <div [ngSwitch]="action">
 
-        <!-- PRODUCTOS -->
-        <ion-list *ngSwitchCase="itemSelected">
+            <!-- PRODUCTOS -->
+            <ion-list *ngSwitchCase="itemSelected">
 
-            <ion-item *ngIf="!clientes.length">No hay productos disponibles</ion-item>
+                <ion-item *ngIf="!clientes.length">No hay productos disponibles</ion-item>
 
-            <ng-container *ngIf="clientes && clientes.length > 0">
-                <div class="cafe productos" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
+                <ng-container *ngIf="clientes && clientes.length > 0">
+                    <div class="cafe productos" *ngFor="let cliente of clientes;" (click)="openModalSite(cliente)">
 
-                    <ion-item>
-                        <ion-thumbnail item-start>
-                            <img src="{{cliente.avatar}}">
-                        </ion-thumbnail>
-                        <h2>{{cliente.nombre}} <span class="price"> <ion-icon name="bicycle"></ion-icon> ${{cliente.domicilio}}</span></h2>
-                        <p>{{cliente.descripcion}}</p>
-                        <!-- <button ion-button clear item-end>$5k</button> -->
-                        <p class="star">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </p>
-                        <p>
-                            <ion-icon name="chatboxes"></ion-icon> <!-- 120 -->
-                            <span class="time"><ion-icon name="alarm"></ion-icon> {{cliente.tiempoEntrega}} min</span>
-                        </p>
+                        <ion-item>
+                            <ion-thumbnail item-start>
+                                <img src="{{cliente.avatar}}">
+                            </ion-thumbnail>
+                            <h2>{{cliente.nombre}} <span class="price"> <ion-icon name="bicycle"></ion-icon> ${{cliente.domicilio}}</span></h2>
+                            <p>{{cliente.descripcion}}</p>
+                            <!-- <button ion-button clear item-end>$5k</button> -->
+                            <p class="star">
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                            </p>
+                            <p>
+                                <ion-icon name="chatboxes"></ion-icon> <!-- 120 -->
+                                <span class="time"><ion-icon name="alarm"></ion-icon> {{cliente.tiempoEntrega}} min</span>
+                            </p>
 
-                    </ion-item>
-                    <ion-row>
+                        </ion-item>
+                        <ion-row>
 
 
-                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                            <ion-item>
-                                <ion-icon name="bicycle"></ion-icon>
-                            </ion-item>
-                        </ion-col>
+                            <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                                <ion-item>
+                                    <ion-icon name="bicycle"></ion-icon>
+                                </ion-item>
+                            </ion-col>
 
-                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                            <ion-item>
-                                <ion-icon name="cart"></ion-icon>
-                            </ion-item>
-                        </ion-col>
+                            <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                                <ion-item>
+                                    <ion-icon name="cart"></ion-icon>
+                                </ion-item>
+                            </ion-col>
 
-                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                            <ion-item>
-                                <ion-icon name="cash"></ion-icon>
-                            </ion-item>
-                        </ion-col>
+                            <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                                <ion-item>
+                                    <ion-icon name="cash"></ion-icon>
+                                </ion-item>
+                            </ion-col>
 
-                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
-                            <ion-item>
-                                <ion-icon name="pin"></ion-icon>
-                            </ion-item>
-                        </ion-col>
+                            <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
+                                <ion-item>
+                                    <ion-icon name="pin"></ion-icon>
+                                </ion-item>
+                            </ion-col>
 
-                    </ion-row>
+                        </ion-row>
 
-                </div>
-            </ng-container>
-
-        </ion-list>
-
-        <!-- EVENTOS -->
-        <div class="eventos" *ngSwitchCase="'eventos'">
-            <ion-list *ngFor="let evento of eventos">
-
-                <ion-list-header>{{ evento.fecha | date:'dd-MMM-yyyy'}}</ion-list-header>
-
-                <ion-item>
-                    <ion-avatar item-start>
-                        <img src="{{ evento.image }}">
-                    </ion-avatar>
-                    <h2>{{ evento.nombre }}</h2>
-                    <p class="description">{{ evento.descripcion }}</p> <br>
-                    <p>Lugar: {{ evento.lugar }}</p>
-                    <ion-note item-end>{{ evento.hora }}</ion-note>
-                </ion-item>
+                    </div>
+                </ng-container>
 
             </ion-list>
 
-        </div>
-        <!-- FIN EVENTOS -->
+            <!-- EVENTOS -->
+            <div class="eventos" *ngSwitchCase="'eventos'">
+                <ion-list *ngFor="let evento of eventos">
 
-    </div>
+                    <ion-list-header>{{ evento.fecha | date:'dd-MMM-yyyy'}}</ion-list-header>
+
+                    <ion-item>
+                        <ion-avatar item-start>
+                            <img src="{{ evento.image }}">
+                        </ion-avatar>
+                        <h2>{{ evento.nombre }}</h2>
+                        <p class="description">{{ evento.descripcion }}</p> <br>
+                        <p>Lugar: {{ evento.lugar }}</p>
+                        <ion-note item-end>{{ evento.hora }}</ion-note>
+                    </ion-item>
+
+                </ion-list>
+
+            </div>
+            <!-- FIN EVENTOS -->
+
+        </div>
+    </ng-container>
+
+    <!-- Lista de produtos (search) -->
+    <ng-container *ngIf="productos && productos.length > 0">
+        <ion-item class="product-item" *ngFor="let producto of productos">
+            <ion-thumbnail item-start>
+            <img src="{{ producto.image }}">
+            </ion-thumbnail>
+            <h2 color="gris">{{ producto?.nombre }}</h2>
+            <p class="description">{{ producto?.descripcion }}</p>
+            <p>${{ producto?.precio }}</p>
+            <p>{{ producto?.proveedor?.nombre }}</p>
+            <ng-container *ngIf="producto.proveedor && producto.proveedor.open || producto.ever">
+                <p *ngIf="producto.abierto && !producto.ever" class="open-site">Abierto</p>
+                <p *ngIf="!producto.abierto && !producto.ever" class="close-site">Cerrado</p>
+                <p *ngIf="producto.ever" class="open-site">Siempre abierto</p>
+            </ng-container>
+            <button *ngIf="producto.abierto || producto.ever" ion-button (click)="prepareOrder(producto)" outline>Agregar al pedido</button>
+            <button class="close-btn" *ngIf="!producto.abierto && !producto.ever" ion-button outline>No hay servicio</button>
+        </ion-item>
+    </ng-container>
 </ion-content>

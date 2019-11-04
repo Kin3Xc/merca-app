@@ -1,0 +1,78 @@
+
+.page-vueltas{
+  background:#ecf0f1;
+
+  ion-segment{
+      background:#71BC51;
+      .segment-button{
+          color:#fff !important;
+      }
+  } 
+  .header{
+    background:#71BC51;
+    text-align:center;
+    color:#fff;
+    margin-bottom: -3px;
+    h3{
+        font-size:1.4em;
+    }
+    p{
+        color:#fff;
+    }
+ }
+ .scroll-content{
+     margin-bottom:30px !important;
+ }
+
+
+ hr{
+     padding: 0;
+     margin: 0;
+ }
+
+ .comment{
+     margin-bottom: 12px;
+
+     ion-textarea{
+         box-shadow: 3px 3px 1px #bdc3c7;
+         border: 1px #bdc3c7 solid;
+         margin-bottom: 18px;   
+         color: #757575;
+     }
+     .text-input-ios{
+         margin: 2px 8px 11px 2px;
+     }
+     
+ }
+
+
+ ion-note{
+     font-size: 14px;
+ }
+
+ .service{
+     color:#bdc3c7;
+     font-size:24px;
+ }
+ .comentario{
+     margin-top: 4px;
+     font-size: 1rem;
+     padding-left: 13px;
+     width: 100%;
+     display: flex;
+     font-style: italic;
+     color: #999;
+ }
+}
+.badge-md{
+  border-radius:10px !important;
+}
+
+ion-footer{
+  .btn-confirmar{
+      background-color:#000;
+      color:#fff;
+      padding:28px;
+      margin:0;
+  }
+}

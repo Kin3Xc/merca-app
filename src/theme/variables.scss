@@ -120,3 +120,9 @@ ion-segment {
     flex: 1 0 100px !important;
   }
 }
+.toolbar-background{
+  background-color: #71BC51 !important;
+}
+.segment-md .segment-button.activated, .segment-md .segment-button.segment-activated{
+  border-color: #fff !important;
+}

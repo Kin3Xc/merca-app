@@ -28,7 +28,7 @@
     "@ionic/storage": "2.0.1",
     "build": "0.1.4",
     "cordova": "^7.1.0",
-    "cordova-android": "^8.0.0",
+    "cordova-android": "^8.1.0",
     "cordova-plugin-browsertab": "^0.2.0",
     "cordova-plugin-buildinfo": "^1.1.0",
     "cordova-plugin-compat": "^1.2.0",
@@ -72,7 +72,8 @@
       "cordova-plugin-compat": {},
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      }
+      },
+      "cordova-android-support-gradle-release": {}
     },
     "platforms": [
       "android"
