@@ -29,4 +29,10 @@ export class ProvidersProductosProvider {
 	  .toPromise();
   }
 
+  search(search){
+    return this.http.get(`${AppConfig.API_URL}/producto/search/${search}`)
+	  .map(res => res.json())
+	  .toPromise();
+  }
+
 }

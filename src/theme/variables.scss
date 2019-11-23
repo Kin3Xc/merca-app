@@ -128,3 +128,14 @@ ion-segment {
 ion-app.platform-ios12 ion-content { 
   pointer-events: auto; /*fix scroll lock on ios12.2*/ 
 }
+
+.toolbar-background{
+  background-color: #71BC51 !important;
+}
+.page-home ion-segment{
+  background-color: #71BC51 !important;
+}
+.searchbar-input-container{
+  background-color: #fff;
+  border-radius: 5px;
+}
