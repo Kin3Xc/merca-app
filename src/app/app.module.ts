@@ -11,6 +11,7 @@ import { CarritoPage } from "../pages/carrito/carrito";
 import { MasPage } from "../pages/mas/mas";
 import { TabsPage } from "../pages/tabs/tabs";
 import { StatusPage } from "../pages/status/status";
+import { VueltasPage } from '../pages/vueltas/vueltas';
 
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
@@ -25,7 +26,7 @@ import { Push } from '@ionic-native/push';
 import { DeviceService } from '../services/devices';
 
 @NgModule({
-  declarations: [MyApp, HomePage, CarritoPage, MasPage, TabsPage, StatusPage],
+  declarations: [MyApp, HomePage, CarritoPage, MasPage, TabsPage, StatusPage, VueltasPage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpModule],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +35,8 @@ import { DeviceService } from '../services/devices';
     CarritoPage,
     MasPage,
     TabsPage,
-    StatusPage
+    StatusPage,
+    VueltasPage
   ],
   providers: [
     StatusBar,

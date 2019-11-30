@@ -1,0 +1,55 @@
+<!--  page vueltas -->
+<ion-header>
+  <ion-navbar class="header">
+    <img class="logo" src="assets/logo-white.png" alt="">
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="page-vueltas">
+  <ion-item class="header">  
+    <h3>Vuelta Express</h3>
+    <p>Pide la vuelta que necesitas, llena el formulario y pide tu vuelta </p>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Tipo de vuelta</ion-label>
+    <ion-select [(ngModel)]="type">
+      <ion-option value="factura">Pagar factura</ion-option>
+      <ion-option value="consignación">Consignación</ion-option>
+      <ion-option value="retiro">Retiros</ion-option>
+      <ion-option value="mensajeria">Mensajeria</ion-option>
+      <ion-option value="compras">Compras</ion-option>
+      <ion-option value="otro">Otro</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+      <ion-label floating>Ingresa tu nombre *</ion-label>
+      <ion-input [(ngModel)]="name" type="text"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Teléfono de contacto *</ion-label>
+      <ion-input [(ngModel)]="telefono" type="text"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Dirección *</ion-label>
+      <ion-input [(ngModel)]="direccion" type="text"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Barrio</ion-label>
+      <ion-input [(ngModel)]="barrio" type="text"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Comentarios </ion-label>
+      <ion-textarea rows="5" cols="33" [(ngModel)]="comentarios"></ion-textarea>
+    </ion-item>
+    <span class="comentario">* Aquí puedes darnos indicaciones de lo que quieres que hagamos por ti</span>
+</ion-content>
+
+<ion-footer>
+  <button (click)="pedirVuelta()" class="btn-confirmar" ion-button full>Pedir Vuelta</button>
+</ion-footer>
