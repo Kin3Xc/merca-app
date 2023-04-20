@@ -27,7 +27,7 @@
     "@ionic/cloud-angular": "^0.12.0",
     "@ionic/storage": "2.0.1",
     "build": "0.1.4",
-    "cordova": "^7.1.0",
+    "cordova": "^11.1.0",
     "cordova-android": "^8.0.0",
     "cordova-ios": "4.5.5",
     "cordova-plugin-browsertab": "^0.2.0",
